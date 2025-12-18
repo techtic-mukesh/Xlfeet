@@ -1,0 +1,188 @@
+{% comment %}
+  CUSTOM HEADER – XL FEET STYLE
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}">
+
+<header class="xl-header section-header">
+
+  <!-- ================= TOP ROW ================= -->
+  <div class="xl-header-top page-width">
+
+    <!-- LOGO + TAGLINE -->
+    <div class="xl-header-left">
+      <a href="{{ routes.root_url }}" class="xl-logo">
+        {% if settings.logo %}
+          {{ settings.logo | image_url: width: 220 | image_tag: preload: true }}
+        {% else %}
+          <strong>{{ shop.name }}</strong>
+        {% endif %}
+      </a>
+
+      <p class="xl-tagline">
+        Fitting <strong>EXTRA LARGE FEET</strong><br>
+        is no <strong>EXTRA LARGE FEAT®</strong>
+      </p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="xl-header-search">
+      {% render 'header-search', input_id: 'Search-In-Header' %}
+    </div>
+
+    <!-- ACCOUNT + CART -->
+    <div class="xl-header-right">
+
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_login_url }}" class="xl-icon">
+          {{ 'icon-account.svg' | inline_asset_content }}
+          <span>Login / Register</span>
+        </a>
+      {% endif %}
+
+      <a href="{{ routes.cart_url }}" class="xl-icon cart-icon">
+        {{ 'icon-cart.svg' | inline_asset_content }}
+        <span>Cart</span>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- ================= MENU ROW ================= -->
+  <div class="xl-header-menu page-width">
+    {% if section.settings.menu != blank %}
+      <nav class="xl-nav">
+        <ul class="xl-menu">
+          {% for link in linklists[section.settings.menu].links %}
+            <li class="xl-menu-item {% if link.title contains 'Clearance' %}clearance{% endif %}">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+
+</header>
+
+<style>
+/* ===== HEADER BASE ===== */
+.xl-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* ===== TOP ROW ===== */
+.xl-header-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 30px;
+  padding: 16px 0;
+}
+
+/* LOGO */
+.xl-header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.xl-tagline {
+  font-size: 11px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* SEARCH */
+.xl-header-search {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* RIGHT ICONS */
+.xl-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.xl-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #000;
+  font-size: 13px;
+}
+
+.xl-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== MENU ROW ===== */
+.xl-header-menu {
+  border-top: 1px solid #eee;
+}
+
+.xl-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 12px 0;
+  margin: 0;
+}
+
+.xl-menu a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #000;
+}
+
+/* CLEARANCE */
+.xl-menu-item.clearance a {
+  background: #ffe08a;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .xl-header-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .xl-header-right {
+    justify-content: center;
+  }
+
+  .xl-menu {
+    justify-content: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "XL Custom Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "XL Custom Header"
+    }
+  ]
+}
+{% endschema %}

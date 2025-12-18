@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap');
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../HelveticaNeue-MediumCondObl.woff2') format('woff2'),
+        url('../HelveticaNeue-MediumCondObl.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../HelveticaNeue.woff2') format('woff2'),
+        url('../HelveticaNeue.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url('../HelveticaNowDisplay-MedIta.woff2') format('woff2'),
+        url('../HelveticaNowDisplay-MedIta.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../HelveticaNeue-Light.woff2') format('woff2'),
+        url('../HelveticaNeue-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+.instrument-serif-regular {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.page-width{
+    max-width: 1280px;
+}
