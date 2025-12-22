@@ -2091,7 +2091,7 @@ input[type='checkbox'] {
 
 /* utility-bar */
 .utility-bar {
-  height: 100%;
+  height: 40px;
 }
 
 .utility-bar--bottom-border {

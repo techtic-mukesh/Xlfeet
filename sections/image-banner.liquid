@@ -120,13 +120,13 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            {% comment %} <h2
+             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
-            </h2> {% endcomment %}
-            <h2
+            </h2> 
+            {% comment %} <h2
             class="banner__heading inline-richtext {{ block.settings.heading_size }}"
             {{ block.shopify_attributes }}
           >
@@ -137,7 +137,7 @@
             <span class="heading-main">
               {{ words | slice: 1, words.size | join: ' ' }}
             </span>
-          </h2>
+          </h2> {% endcomment %}
 
 
           {%- when 'text' -%}

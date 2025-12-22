@@ -2,6 +2,130 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  /* Custom Slideshow Pagination Styles */
+  
+  /* Lines Style - Like in image */
+  .slideshow-{{ section.id }} .slider-counter--lines {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--lines {
+    width: 30px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--lines:hover,
+  .slideshow-{{ section.id }} .slider-counter__link--lines.active {
+    background: #fff;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--lines .dot {
+    display: none;
+  }
+  
+  /* Links Style - Text pagination */
+  .slideshow-{{ section.id }} .slider-counter--links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--links {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    position: relative;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--links:hover,
+  .slideshow-{{ section.id }} .slider-counter__link--links.active {
+    color: #fff;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--links.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: #fff;
+  }
+  
+  /* Position pagination at bottom center */
+  .slideshow-{{ section.id }} .slideshow__controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .slideshow-{{ section.id }} .slideshow__controls--top {
+    position: absolute;
+    bottom: 30px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Hide arrows for cleaner look with lines/links */
+  .slideshow-{{ section.id }}.hide-arrows .slider-button--prev,
+  .slideshow-{{ section.id }}.hide-arrows .slider-button--next {
+    display: none;
+  }
+  
+  /* Dots style improvement */
+  .slideshow-{{ section.id }} .slider-counter__link--dots .dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .slideshow-{{ section.id }} .slider-counter__link--dots:hover .dot,
+  .slideshow-{{ section.id }} .slider-counter__link--dots.active .dot {
+    background: #fff;
+    transform: scale(1.2);
+  }
+  
+  @media screen and (max-width: 749px) {
+    .slideshow-{{ section.id }} .slideshow__controls,
+    .slideshow-{{ section.id }} .slideshow__controls--top {
+      bottom: 20px;
+    }
+    
+    .slideshow-{{ section.id }} .slider-counter__link--lines {
+      width: 30px;
+    }
+    
+    .slideshow-{{ section.id }} .slider-counter__link--links {
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+  }
+{%- endstyle -%}
+
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
@@ -26,7 +150,7 @@
 {%- endif -%}
 
 <slideshow-component
-  class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
+  class="slider-mobile-gutter slideshow-{{ section.id }}{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}{% if section.settings.hide_arrows %} hide-arrows{% endif %}"
   role="region"
   aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
   aria-label="{{ section.settings.accessibility_info | escape }}"
@@ -54,12 +178,15 @@
           <div class="slideshow__control-wrapper">
             {%- for block in section.blocks -%}
               <button
-                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
+                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link{% if forloop.first %} active{% endif %}"
                 aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                 aria-controls="Slider-{{ section.id }}"
+                data-slide-index="{{ forloop.index0 }}"
               >
                 {%- if section.settings.slider_visual == 'numbers' -%}
                   {{ forloop.index -}}
+                {%- elsif section.settings.slider_visual == 'links' -%}
+                  {{ block.settings.heading | default: 'Slide' | strip_html | truncatewords: 2, '' }}
                 {%- else -%}
                   <span class="dot"></span>
                 {%- endif -%}
@@ -161,9 +288,21 @@
         <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
-              <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+              {% comment %} <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
                 {{ block.settings.heading }}
-              </h2>
+              </h2> {% endcomment %}
+              <h2
+            class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+            {{ block.shopify_attributes }}
+          >
+            {% assign words = block.settings.heading | split: ' ' %}
+
+            <span class="heading-extra">{{ words[0] }}</span><br>
+
+            <span class="heading-main">
+              {{ words | slice: 1, words.size | join: ' ' }}
+            </span>
+          </h2>
             {%- endif -%}
             {%- if block.settings.subheading != blank -%}
               <div class="banner__text rte">
@@ -213,12 +352,15 @@
           <div class="slideshow__control-wrapper">
             {%- for block in section.blocks -%}
               <button
-                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
+                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link{% if forloop.first %} active{% endif %}"
                 aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                 aria-controls="Slider-{{ section.id }}"
+                data-slide-index="{{ forloop.index0 }}"
               >
                 {%- if section.settings.slider_visual == 'numbers' -%}
                   {{ forloop.index -}}
+                {%- elsif section.settings.slider_visual == 'links' -%}
+                  {{ block.settings.heading | default: 'Slide' | strip_html | truncatewords: 2, '' }}
                 {%- else -%}
                   <span class="dot"></span>
                 {%- endif -%}
@@ -256,6 +398,133 @@
     </div>
   {%- endif -%}
 </slideshow-component>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slideshow = document.querySelector('.slideshow-{{ section.id }}');
+  if (!slideshow) return;
+  
+  const slider = slideshow.querySelector('#Slider-{{ section.id }}');
+  const slides = slideshow.querySelectorAll('.slideshow__slide');
+  const paginationButtons = slideshow.querySelectorAll('.slider-counter__link');
+  let currentSlide = 0;
+  
+  // Function to go to specific slide
+  function goToSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    
+    currentSlide = index;
+    
+    // Scroll to slide
+    const targetSlide = slides[index];
+    if (targetSlide) {
+      targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+    
+    // Update active pagination
+    updateActivePagination(index);
+  }
+  
+  // Update active pagination button
+  function updateActivePagination(index) {
+    paginationButtons.forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+  }
+  
+  // Click on pagination buttons
+  paginationButtons.forEach((btn, index) => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      goToSlide(index);
+    });
+  });
+  
+  // Observe which slide is visible
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          const slideIndex = Array.from(slides).indexOf(entry.target);
+          if (slideIndex !== -1) {
+            currentSlide = slideIndex;
+            updateActivePagination(slideIndex);
+          }
+        }
+      });
+    }, { threshold: 0.5, root: slider });
+    
+    slides.forEach(slide => observer.observe(slide));
+  }
+  
+  // Mouse drag functionality
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let hasMoved = false;
+  
+  if (slider) {
+    slider.style.cursor = 'grab';
+    
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      hasMoved = false;
+      slider.style.cursor = 'grabbing';
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+      if (isDown) {
+        isDown = false;
+        slider.style.cursor = 'grab';
+      }
+    });
+    
+    slider.addEventListener('mouseup', (e) => {
+      if (isDown && hasMoved) {
+        // Determine direction and snap to nearest slide
+        const movedDistance = startX - (e.pageX - slider.offsetLeft);
+        if (Math.abs(movedDistance) > 50) {
+          if (movedDistance > 0) {
+            goToSlide(currentSlide + 1);
+          } else {
+            goToSlide(currentSlide - 1);
+          }
+        }
+      }
+      isDown = false;
+      slider.style.cursor = 'grab';
+    });
+    
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      
+      if (Math.abs(walk) > 10) {
+        hasMoved = true;
+      }
+      
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  }
+  
+  // Arrow button functionality
+  const prevBtn = slideshow.querySelector('.slider-button--prev');
+  const nextBtn = slideshow.querySelector('.slider-button--next');
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+  }
+});
+</script>
 
 {%- if request.design_mode -%}
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
@@ -325,10 +594,25 @@
         {
           "value": "numbers",
           "label": "t:sections.slideshow.settings.slider_visual.options__3.label"
+        },
+        {
+          "value": "lines",
+          "label": "t:sections.slideshow.settings.slider_visual.options__4.label"
+        },
+        {
+          "value": "links",
+          "label": "Links (Text)"
         }
       ],
-      "default": "counter",
+      "default": "lines",
       "label": "t:sections.slideshow.settings.slider_visual.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_arrows",
+      "label": "Hide Arrow Buttons",
+      "default": true,
+      "info": "Hide prev/next arrows for cleaner pagination"
     },
     {
       "type": "checkbox",

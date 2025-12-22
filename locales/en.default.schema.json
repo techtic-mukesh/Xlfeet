@@ -336,6 +336,9 @@
         "show_vendor": {
           "label": "Vendor"
         },
+        "show_product_type": {
+          "label": "Product type"
+        },
         "show_cart_note": {
           "label": "Cart note"
         },
@@ -395,7 +398,9 @@
       "padding": {
         "section_padding_heading": "Padding",
         "padding_top": "Top",
-        "padding_bottom": "Bottom"
+        "padding_bottom": "Bottom",
+        "padding_left": "Left",
+        "padding_right": "Right"
       },
       "spacing": "Spacing",
       "colors": {
@@ -818,6 +823,9 @@
         },
         "show_vendor": {
           "label": "Vendor"
+        },
+        "show_product_type": {
+          "label": "Product type"
         },
         "show_rating": {
           "label": "Product rating",
@@ -1817,6 +1825,9 @@
         "show_vendor": {
           "label": "Vendor"
         },
+        "show_product_type": {
+          "label": "Product type"
+        },
         "show_rating": {
           "label": "Product rating",
           "info": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types/collection-pages#product-grid-show-product-rating)"
@@ -2457,6 +2468,9 @@
         "show_vendor": {
           "label": "Vendor"
         },
+        "show_product_type": {
+          "label": "Product type"
+        },
         "show_rating": {
           "label": "Product rating",
           "info": "An app is required for product ratings. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/page-types/search-page)"
@@ -2833,6 +2847,9 @@
         "show_vendor": {
           "label": "Vendor"
         },
+        "show_product_type": {
+          "label": "Product type"
+        },
         "show_rating": {
           "label": "Product rating",
           "info": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
@@ -3050,6 +3067,9 @@
           },
           "options__3": {
             "label": "Numbers"
+          },
+          "options__4": {
+            "label": "Lines"
           }
         },
         "auto_rotate": {

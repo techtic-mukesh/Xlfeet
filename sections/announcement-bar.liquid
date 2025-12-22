@@ -16,7 +16,9 @@
       <span>
         Enjoy Free shipping to India on all orders over ₹18,700!
       </span>
-      <span class="arrow">→</span>
+      <span class="arrow"><span class="svg-wrapper">
+                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                      </span></span>
     </div>
 
     <!-- RIGHT -->
@@ -32,7 +34,7 @@
 .utility-bar {
   background: #0b0b0b;
   color: #ffffff;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .announcement-bar-custom {
@@ -44,7 +46,7 @@
 
 .announcement-item {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 6px;
   white-space: nowrap;
 }

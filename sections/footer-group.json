@@ -13,16 +13,58 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "text_bJkXJR": {
+          "type": "text",
+          "settings": {
+            "heading": "Explore XL Feet",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "location_1": "XLfeet Inc. 242 Fillmore Ave East, St Paul, MN 55107",
+            "email": "customercare@xlfeet.com",
+            "phone_1": "+1 (651) 797-6000",
+            "location": "available 11:00-6:00 Mon-Fri:- 12:00-5:00 Sat (Central US)"
+          }
+        },
+        "link_list_H3YyhU": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "link_list_f88qyx": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer"
+          }
+        },
+        "brand_information_kEn3zH": {
+          "type": "brand_information",
+          "settings": {
+            "brand_heading": "Let Us Surprise You",
+            "show_social": true,
+            "newsletter_heading": "Sign Up for Newsletters",
+            "newsletter_text": "<p>Be the first to Know. Sign up for newsletter today</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_bJkXJR",
+        "link_list_H3YyhU",
+        "link_list_f88qyx",
+        "brand_information_kEn3zH"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
         "margin_top": 0,
         "padding_top": 36,
         "padding_bottom": 36

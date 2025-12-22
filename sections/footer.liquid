@@ -83,8 +83,34 @@
                   {%- when '@app' -%}
                     {% render block %}
                   {%- when 'text' -%}
+                    <div class="footer-block__details_wrapper">
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
+                    </div>
+                      <div class="footer-block__details location">
+                         <span class="svg-wrapper">
+                          {{ 'icon-location.svg' | inline_asset_content }}
+                        </span>
+                        {{ block.settings.location_1 }}
+                      </div>
+                      <div class="footer-block__details email">
+                         <span class="svg-wrapper">
+                          {{ 'icon-email.svg' | inline_asset_content }}
+                        </span>
+                        {{ block.settings.email }}
+                      </div>
+                      <div class="footer-block__details phonenumber">
+                      <span class="svg-wrapper">
+                          {{ 'icon-phone.svg' | inline_asset_content }}
+                        </span>
+                        {{ block.settings.phone_1 }}
+                      </div>
+                      <div class="footer-block__details vandor-location">
+                        <span class="svg-wrapper">
+                          {{ 'icon-vendor.svg' | inline_asset_content }}
+                        </span>
+                        {{ block.settings.location }}
+                      </div>
                     </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
@@ -103,6 +129,9 @@
                     {%- endif -%}
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
+                      <div class="footer-block__brand-header footer-block__heading">
+                        {{ block.settings.brand_heading }}
+                      </div>
                       {%- if settings.brand_image != blank -%}
                         {%- assign brand_image_height = settings.brand_image_width
                           | divided_by: settings.brand_image.aspect_ratio
@@ -121,16 +150,26 @@
                               width: settings.brand_image_width
                           }}
                         </div>
-                      {%- endif -%}
-                      {%- if settings.brand_headline != blank -%}
-                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
-                      {%- endif -%}
-                      {%- if settings.brand_description != blank -%}
-                        <div class="rte">{{ settings.brand_description }}</div>
-                      {%- endif -%}
-                      {%- if block.settings.show_social and has_social_icons -%}
-                        {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
+                        {%- endif -%}
+                        {%- if settings.brand_headline != blank -%}
+                          <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
+                        {%- endif -%}
+                        {%- if settings.brand_description != blank -%}
+                          <div class="rte">{{ settings.brand_description }}</div>
+                        {%- endif -%}
+                        {%- if block.settings.show_social and has_social_icons -%}
+                          {%- render 'social-icons', class: 'footer__list-social' -%}
+                        {%- endif -%}
+                        <div class="footer-block__brand-newsletter">
+                          {%- if block.settings.newsletter_heading != blank -%}
+                            <h2 class="footer-block__heading inline-richtext">{{ block.settings.newsletter_heading }}</h2>
+                          {%- endif -%}
+                          {%- if block.settings.newsletter_text != blank -%}
+                            <div class="rte footer-block__brand-newsletter-text">
+                              {{ block.settings.newsletter_text }}  
+                              </div>
+                          {%- endif -%}
+                        </div>
                     </div>
                   {%- when 'image' -%}
                     <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
@@ -350,6 +389,11 @@
       "type": "brand_information",
       "name": "t:sections.footer.blocks.brand_information.name",
       "settings": [
+         {
+          "type": "inline_richtext",
+          "id": "brand_heading",
+          "label": "Heading"
+        },
         {
           "type": "paragraph",
           "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
@@ -360,6 +404,18 @@
           "default": true,
           "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
           "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        },
+         {
+          "type": "inline_richtext",
+          "id": "newsletter_heading",
+          "default": "t:sections.newsletter.blocks.heading.settings.heading.default",
+          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "newsletter_text",
+          "default": "t:sections.newsletter.blocks.paragraph.settings.paragraph.default",
+          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
         }
       ]
     },
@@ -378,6 +434,26 @@
           "id": "subtext",
           "default": "t:sections.footer.blocks.text.settings.subtext.default",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "text",
+          "id": "location_1",
+          "label": "Location"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email"
+        },
+        {
+        "type": "text",
+        "id": "phone_1",
+        "label": "Phone Number"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location"
         }
       ]
     },
