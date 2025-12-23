@@ -204,27 +204,20 @@
   white-space: nowrap;
 }
 
-/* Responsive Design */
-/* @media screen and (max-width: 1024px) {
-  .frame-parent {
-    padding: 30px 40px;
-  }
-  
-  .frame-content {
-    gap: 200px;
-  }
-  
-  .shop-by-width,
-  .shop-by-size {
-    font-size: 32px;
-  }
-} */
 
 @media screen and (max-width: 768px) {
   .shop-filter-wrapper {
     grid-template-columns: 1fr;
   }
-  
+  .shop-by-width-parent,
+  .shop-by-size-parent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    flex-shrink: 0;
+  }
   .frame-parent {
     padding: 30px 20px;
     height: 400px;
@@ -253,11 +246,6 @@
   
   .frame-content {
     gap: 120px;
-  }
-  
-  .shop-by-width,
-  .shop-by-size {
-    font-size: 24px;
   }
   
   .shop-all {

@@ -26,8 +26,20 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding:30px 0 30px 10px;
+  }
+  .collection_grid_section .section-{{ section.id }}-padding{
+    padding:30px 10px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-left: {{ section.settings.padding_left }}px;
+      padding-right: {{ section.settings.padding_right }}px;
+    }
+  }
+  .section-{{ section.id }}-padding .page-width {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   /* Custom Featured Collection Styles */
   .fc-section-{{ section.id }} .fc-header {
@@ -124,8 +136,10 @@
   .fc-section-{{ section.id }} .fc-product-image-wrapper {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    background: #f8f8f8;
+    box-sizing: border-box;
+    border: 0.8px solid #ececec;
+    border-radius: 16.27px;
+    background-color: rgba(217, 217, 217, 0.15);
   }
 
   .fc-section-{{ section.id }} .fc-product-image {
@@ -189,11 +203,43 @@
 
   /* Mobile Add to Cart / Buy Now */
   @media screen and (max-width: 749px) {
+     /* Custom Featured Collection Styles */
+    .fc-section-{{ section.id }} .fc-header {
+      gap:30px;
+      margin-bottom: 0;
+    }
+    .fc-section-{{ section.id }} .fc-subtitle {
+      font-size: 22px;
+      /* line-height: 18px; */
+      text-align: center;
+    }
+    .fc-section-{{ section.id }} .fc-view-all-btn {
+      padding: 10px 30px;
+      font-size: 14px;
+    } 
+    .fc-section-{{ section.id }} .fc-title {
+      font-size: 22px;
+      line-height: 22px;
+      font-weight: 500;
+      text-align: center;
+      }
+      .fc-section-{{ section.id }} .fc-product-price {
+      font-size: 14px !important;
+      line-height: 14px !important;
+      font-weight: 500;
+    }
+  .fc-section-{{ section.id }} .fc-header-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding-bottom: 30px;
+    }
     .fc-section-{{ section.id }} .fc-add-to-cart-wrapper {
       opacity: 1;
       transform: translateY(0);
       position: relative;
-      padding: 10px 0 0 0;
+      padding: 10px;
     }
 
     .fc-section-{{ section.id }} .fc-add-to-cart-btn,
@@ -257,6 +303,7 @@
     font-size: 16px;
     line-height: 16px;
     color: #191b1d;
+    font-weight: 500;
     font-family: 'Helvetica Neue';
     margin: 0;
   }
@@ -379,9 +426,10 @@
   .fc-section-{{ section.id }} .fc-buy-now-btn {
     width: 100%;
     padding: 12px 20px;
-    border: none;
-    background: #000;
-    color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -393,7 +441,8 @@
   }
 
   .fc-section-{{ section.id }} .fc-buy-now-btn:hover {
-    background: #333;
+    background: #000;
+    color: #fff;
   }
 
   .fc-section-{{ section.id }} .fc-products-slider .fc-product-card {
@@ -465,7 +514,7 @@
   endif
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} isolate gradient fc-section-{{ section.id }}">
+<div class="color-{{ section.settings.color_scheme }} {{ section.settings.custom_class }} isolate gradient fc-section-{{ section.id }}">
   <div class="collection section-{{ section.id }}-padding " id="collection-{{ section.id }}" data-id="{{ section.id }}">
     <div class="page-width">
     <!-- Header with Title and View All / Arrows -->
@@ -487,12 +536,14 @@
       
       <div class="fc-header-right">
         {%- if section.settings.show_view_all and section.settings.collection != blank and more_in_collection -%}
-          <a href="{{ section.settings.collection.url }}" class="fc-view-all-btn">
-            VIEW ALL
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
+          <a href="{{ section.settings.show_view_all_url }}" class="fc-view-all-btn">
+            {{ section.settings.view_all_text | default: 'View All' }}  
+            <span class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+                </span>
           </a>
         {%- endif -%}
         
@@ -949,6 +1000,11 @@ document.addEventListener('DOMContentLoaded', function() {
   },
   "settings": [
     {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Add a custom class or ID"
+    },
+    {
       "type": "collection",
       "id": "collection",
       "label": "t:sections.featured-collection.settings.collection.label"
@@ -1063,6 +1119,17 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": true,
       "label": "t:sections.featured-collection.settings.show_view_all.label",
       "info": "t:sections.featured-collection.settings.show_view_all.info"
+    },
+     {
+      "type": "text",
+      "id": "show_view_all_text",
+      "label": "t:sections.featured-collection.settings.show_view_all.label",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "show_view_all_url",
+      "label": "t:sections.featured-collection.settings.show_view_all.label"
     },
     {
       "type": "select",
@@ -1309,6 +1376,26 @@ document.addEventListener('DOMContentLoaded', function() {
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 80
     }
   ],
   "presets": [

@@ -3,6 +3,19 @@
   With Mega Menu (Desktop) and Accordion Menu (Mobile)
 {% endcomment %}
 
+<style>
+  .xl-header .page-width {
+    padding-left: {{ section.settings.padding_left }}px !important;
+    padding-right: {{ section.settings.padding_right }}px !important;
+  }
+  @media screen and (max-width: 749px) {
+    .xl-header .page-width {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+  }
+</style>
+
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}">
@@ -71,8 +84,7 @@
     </div>
 
     <!-- MENU ROW WITH MEGA MENU -->
-    <div class="xl-header-menu">
-      <div class="page-width">
+    <div class="xl-header-menu page-width">
         {% if section.settings.menu != blank %}
           <nav class="xl-nav">
             <ul class="xl-menu">
@@ -149,7 +161,6 @@
             </ul>
           </nav>
         {% endif %}
-      </div>
     </div>
   </div>
 
@@ -1031,6 +1042,30 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "menu",
       "label": "Main menu",
       "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 80
     }
   ],
   "presets": [

@@ -339,7 +339,7 @@
 }
 
 .banner__box {
-  padding: 4rem 1.5rem;
+  /* padding: 4rem 1.5rem; */
   position: relative;
   height: fit-content;
   align-items: center;
@@ -439,6 +439,7 @@
 
 .banner__box .banner__heading + * {
   margin-top: 1rem;
+  margin-right: 2rem;
 }
 
 .banner__buttons {

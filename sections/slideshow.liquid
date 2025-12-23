@@ -3,6 +3,13 @@
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Slideshow Section Padding */
+  .slideshow-{{ section.id }}-padding {
+    padding-left: {{ section.settings.padding_left }}px;
+    padding-right: {{ section.settings.padding_right }}px;
+  }
+  
+  
   /* Custom Slideshow Pagination Styles */
   
   /* Lines Style - Like in image */
@@ -110,6 +117,13 @@
   }
   
   @media screen and (max-width: 749px) {
+  .slideshow-{{ section.id }}-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .slideshow__text-wrapper{
+    padding: 51px 149px 94px 11px;
+  }
     .slideshow-{{ section.id }} .slideshow__controls,
     .slideshow-{{ section.id }} .slideshow__controls--top {
       bottom: 20px;
@@ -285,7 +299,7 @@
             {%- endif -%}
           {%- endif -%}
         </div>
-        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="slideshow__text-wrapper  slideshow-{{ section.id }}-padding banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
               {% comment %} <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
@@ -666,6 +680,30 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "t:sections.slideshow.settings.accessibility.label",
       "info": "t:sections.slideshow.settings.accessibility.info",
       "default": "t:sections.slideshow.settings.accessibility.default"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
     }
   ],
   "blocks": [

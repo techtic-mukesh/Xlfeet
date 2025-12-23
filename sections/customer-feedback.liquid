@@ -7,7 +7,19 @@
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
+        padding-left: 20px;
+        padding-right: 20px;
         background-color: rgba(244, 244, 244, 0.5);
+      }
+      @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+          padding-left: {{ section.settings.padding_left }}px;
+          padding-right: {{ section.settings.padding_right }}px;
+        }
+      }
+      .section-{{ section.id }}-padding .page-width {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
       }
         /* ===============================
         Customer Feedback Section
@@ -36,25 +48,31 @@
             }
 
         /* ===============================
-        Background Text
+        Background Text - Full Screen Width
         ================================ */
-     .feedback-bg-text{
-        width: 100%;
-    overflow: hidden;
-    height: 136px;
-        }
-        .feedback-bg-text span { 
-            width: 1422px;
-        height: 70px;
-        color: white;
+     .feedback-bg-text {
         position: relative;
-        font-size: 108px;
-        letter-spacing: 0.1em;
-        /* line-height: 70px; */
-        display: inline-block;
-        font-family: 'Helvetica Neue';
+        width: 100%;
+        overflow: visible;
+        pointer-events: none;
         text-align: center;
-        text-shadow: 1.5px 0 0 #e5e5e5, 0 1.5px 0 #e5e5e5, -1.5px 0 0 #e5e5e5, 0 -1.5px 0 #e5e5e5;
+        margin-top: 60px;
+        /* padding: 0 20px; */
+        box-sizing: border-box;
+     }
+        .feedback-bg-text span { 
+        display: block;
+        font-size: clamp(24px, 8vw, 140px);
+        font-weight: 700;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e0e0e0;
+        text-stroke: 1.5px #e0e0e0;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 1;
+        width: 100%;
         }
 
         /* ===============================
@@ -70,6 +88,7 @@
 
         .feedback-content {
         position: relative;
+        z-index: 2;
         }
 
         /* ===============================
@@ -260,7 +279,12 @@
         }
 
         .feedback-bg-text {
-            display: none;
+            display: block;
+            margin-top: 30px;
+        }
+        .feedback-bg-text span {
+            font-size: clamp(20px, 6vw, 40px);
+            letter-spacing: 0.03em;
         }
 
         .feedback-header {
@@ -306,7 +330,7 @@
         }
 
         .feedback-bg-text span {
-            font-size: 12rem;
+            font-size: clamp(60px, 8vw, 120px);
         }
         }
 </style>
@@ -381,10 +405,10 @@
         </div>
         </div>
         <!-- Large Background Text -->
+        </section>
         <div class="feedback-bg-text">
         <span>CUSTOMER FEEDBACK</span>
         </div>
-        </section>
 
 
     <script>
@@ -547,6 +571,26 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 80
     }
     ],
     "blocks": [
