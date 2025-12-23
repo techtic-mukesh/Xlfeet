@@ -280,6 +280,12 @@
     .cl-section-{{ section.id }} .cl-collections-slider .cl-collection-image-wrapper {
       height: 250px;
     }
+
+    /* Show only 4 items in mobile grid */
+    .cl-section-{{ section.id }} .cl-collections-slider .cl-collection-card:nth-child(n+5),
+    .cl-section-{{ section.id }} .cl-collections-grid .cl-collection-card:nth-child(n+5) {
+      display: none !important;
+    }
     {%- endunless -%}
 
     {%- if section.settings.swipe_on_mobile -%}

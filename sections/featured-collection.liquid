@@ -36,6 +36,10 @@
       padding-left: {{ section.settings.padding_left }}px;
       padding-right: {{ section.settings.padding_right }}px;
     }
+    .collection_grid_section .section-{{ section.id }}-padding {
+      padding-left: {{ section.settings.padding_left }}px;
+      padding-right: {{ section.settings.padding_right }}px;
+    }
   }
   .section-{{ section.id }}-padding .page-width {
     padding-left: 0 !important;
@@ -462,6 +466,12 @@
   }
 
   @media screen and (max-width: 749px) {
+
+     .fc-section-{{ section.id }} .fc-swatch {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
     .fc-section-{{ section.id }} .fc-products-grid {
       grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
       gap: 15px;

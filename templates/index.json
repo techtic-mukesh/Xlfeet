@@ -422,6 +422,7 @@
         "title": "This Weekend Only",
         "discount_text": "<p><strong>Flat 30% OFF</strong> on All Styles</p>",
         "product_image": "shopify://shop_images/Rectangle_40199_1.png",
+        "product_image_mobile": "shopify://shop_images/Rectangle_40200.png",
         "button_text": "Shop Collection",
         "button_link": "shopify://collections"
       }

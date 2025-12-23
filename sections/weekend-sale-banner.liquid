@@ -145,7 +145,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    z-index: 0;
+    z-index: 12;
   }
 
   .banner-product-image {
@@ -153,6 +153,24 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  /* Desktop image - show on desktop, hide on mobile */
+  .banner-image-desktop {
+    display: flex;
+  }
+  .banner-image-mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile image - show on mobile, hide on desktop */
+    .banner-image-desktop {
+      display: none !important;
+    }
+    .banner-image-mobile {
+      display: block !important;
+    }
   }
 
   /* Tablet Styles */
@@ -192,72 +210,89 @@
   @media (max-width: 768px) {
     .weekend-sale-banner {
       min-height: auto;
+      /* overflow: visible; */
+      padding-bottom: 10px;
     }
 
     .weekend-sale-inner {
       flex-direction: column;
       min-height: auto;
       padding: 0;
-     border: 1px solid rgba(25, 27, 29, 0.4);
+      border: 1px solid rgba(25, 27, 29, 0.4);
       margin: 10px;
+      margin-bottom: 0;
+      overflow: visible;
+      position: relative;
     }
 
     {% if section.settings.show_border %}
     .weekend-sale-banner::before {
-      /* top: 15px; */
       display: none;
     }
 
     .weekend-sale-banner::after {
-      /* bottom: 15px; */
       display: none;
-
     }
     {% endif %}
 
     .banner-content {
       max-width: 100%;
-      padding: 50px 30px;
-      gap: 25px;
+      padding: 40px 30px 20px;
+      gap: 20px;
       order: 1;
+      text-align: center;
+      align-items: center;
     }
 
     .banner-text-group {
-      gap: 10px;
+      gap: 8px;
+      text-align: center;
     }
 
     .banner-subtitle {
-      font-size: 22px;
-      line-height: 18px;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      justify-content: center;
     }
 
     .banner-title {
-      font-size: 22px;
-      line-height: 22px;
+      font-size: 20px;
+      line-height: 24px;
       font-weight: 500;
+      text-align: center;
     }
 
     .banner-description {
-      font-size: 18px;
-      line-height: 18px;
+      font-size: 16px;
+      line-height: 20px;
       color: #000;
-
+      text-align: center;
     }
 
     .banner-cta {
-      padding: 10px 30px;
+      padding: 12px 30px;
       font-size: 14px;
       text-transform: uppercase;
       font-weight: 500;
+      margin: 0 auto;
     }
 
-    .banner-image-wrapper {
+    .banner-image-wrapper.banner-image-mobile {
       position: relative;
-      width: 100%;
-      height: 350px;
+      width: calc(100% - -29px);
+      height: auto;
       order: 2;
+      margin-bottom: -50px;
+      z-index: 5;
     }
-    
+
+    .banner-image-mobile .banner-product-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   /* Small Mobile Styles */
@@ -306,10 +341,22 @@
     </div>
 
     {% if section.settings.product_image %}
-      <div class="banner-image-wrapper">
+      <div class="banner-image-wrapper banner-image-desktop">
         <img 
           src="{{ section.settings.product_image | image_url: width: 1200 }}" 
           alt="{{ section.settings.product_image.alt | default: section.settings.title | escape }}"
+          class="banner-product-image"
+          loading="lazy"
+          width="1200"
+          height="800"
+        >
+      </div>
+    {% endif %}
+    {% if section.settings.product_image_mobile %}
+      <div class="banner-image-wrapper banner-image-mobile">
+        <img 
+          src="{{ section.settings.product_image_mobile | image_url: width: 1200 }}" 
+          alt="{{ section.settings.product_image_mobile.alt | default: section.settings.title | escape }}"
           class="banner-product-image"
           loading="lazy"
           width="1200"
@@ -368,7 +415,12 @@
     {
       "type": "image_picker",
       "id": "product_image",
-      "label": "Product Image (Right Side)"
+      "label": "Product Image (destop )"
+    },
+     {
+      "type": "image_picker",
+      "id": "product_image_mobile",
+      "label": "Product Image (Mobile )"
     },
     {
       "type": "header",
@@ -394,3 +446,4 @@
   ]
 }
 {% endschema %}
+ 

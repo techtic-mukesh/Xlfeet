@@ -274,26 +274,46 @@
         ================================ */
 
         @media (max-width: 768px) {
+          .feedback-bg-text{
+            margin-top: 24px !important;
+          }
+            .review-title {
+            font-size: 14px;
+            }
+
+            .review-text {
+           font-size: 14px;
+              line-height: 20px;
+              font-weight: 300;
+              font-family: 'Helvetica Neue';
+              color: #646464;
+            }
+
+
+            .review-author {
+            font-size: 14px;
+            }
+           .feedback-subtitle {
+            font-size: 22px;
+            /* line-height: 18px;; */
+            color: #000;
+            text-align: center;
+            }
         .customer-feedback-section {
-            padding: 3.5rem 1rem 4rem;
+            padding: 3rem 0 3rem 1rem;
         }
-
-        .feedback-bg-text {
-            display: block;
-            margin-top: 30px;
-        }
-        .feedback-bg-text span {
-            font-size: clamp(20px, 6vw, 40px);
-            letter-spacing: 0.03em;
-        }
-
         .feedback-header {
             text-align: center;
             margin-bottom: 2.5rem;
         }
 
         .feedback-title {
-            font-size: 1.75rem;
+            text-align: center;
+            font-size: 22px;
+            line-height: 22px;
+            font-weight: 500;
+            font-family: 'Helvetica Neue';
+            color: #000;
         }
 
         .desktop-only {
@@ -307,7 +327,7 @@
         .review-card {
             flex: 0 0 100%;
             min-width: 100%;
-            padding: 1.75rem;
+            padding: 2rem;
         }
 
         .reviews-track {
@@ -327,10 +347,6 @@
 
         .feedback-title {
             font-size: 2rem;
-        }
-
-        .feedback-bg-text span {
-            font-size: clamp(60px, 8vw, 120px);
         }
         }
 </style>
@@ -395,146 +411,142 @@
             {% endfor %}
             </div>
         </div>
-
-        <!-- Mobile Navigation Dots -->
-        <div class="mobile-dots mobile-only">
-            {% comment %} {% for block in section.blocks %}
-            <button class="dot" data-index="{{ forloop.index0 }}" aria-label="Go to review {{ forloop.index }}"></button>
-            {% endfor %} {% endcomment %}
-        </div>
         </div>
         </div>
         <!-- Large Background Text -->
-        </section>
         <div class="feedback-bg-text">
         <span>CUSTOMER FEEDBACK</span>
         </div>
+        </section>
 
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const sectionId = '{{ section.id }}';
-      const section = document.querySelector('.section-' + sectionId + '-padding');
-      if (!section) return;
-      
-      const track = section.querySelector('.reviews-track');
-      const prevBtn = section.querySelector('[data-slider-prev]');
-      const nextBtn = section.querySelector('[data-slider-next]');
-      const dots = section.querySelectorAll('.dot');
-      const cards = section.querySelectorAll('.review-card');
-      
-      if (!track || cards.length === 0) return;
-      
-      let currentIndex = 0;
-      const totalCards = cards.length;
-      
-      function getCardsPerView() {
-        if (window.innerWidth < 769) return 1;
-        if (window.innerWidth < 1025) return 2;
-        return 3;
-      }
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  const section = document.querySelector('.section-' + sectionId + '-padding');
+  if (!section) return;
+  
+  const track = section.querySelector('.reviews-track');
+  const prevBtn = section.querySelector('[data-slider-prev]');
+  const nextBtn = section.querySelector('[data-slider-next]');
+  const cards = section.querySelectorAll('.review-card');
+  
+  if (!track || cards.length === 0) return;
+  
+  let currentIndex = 0;
+  const totalCards = cards.length;
+  
+  function getCardsPerView() {
+    if (window.innerWidth < 769) return 1;
+    if (window.innerWidth < 1025) return 2;
+    return 3;
+  }
 
-      function updateCarousel() {
-        const cardsPerView = getCardsPerView();
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        currentIndex = Math.min(currentIndex, maxIndex);
-        
-        const cardWidth = cards[0].offsetWidth;
-        const gap = window.innerWidth < 769 ? 16 : 32;
-        const offset = -(currentIndex * (cardWidth + gap));
-        
-        track.style.transform = `translateX(${offset}px)`;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
-      }
+  function updateCarousel() {
+    const cardsPerView = getCardsPerView();
+    const maxIndex = Math.max(0, totalCards - cardsPerView);
+    currentIndex = Math.min(currentIndex, maxIndex);
+    
+    const cardWidth = cards[0].offsetWidth;
+    const gap = window.innerWidth < 769 ? 16 : 32;
+    const offset = -(currentIndex * (cardWidth + gap));
+    
+    track.style.transform = `translateX(${offset}px)`;
+  }
 
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-          currentIndex = Math.max(0, currentIndex - 1);
-          updateCarousel();
-        });
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-          const cardsPerView = getCardsPerView();
-          const maxIndex = Math.max(0, totalCards - cardsPerView);
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-          updateCarousel();
-        });
-      }
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', function() {
-          currentIndex = parseInt(this.dataset.index);
-          updateCarousel();
-        });
-      });
-
-      // Mouse drag functionality
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      let hasMoved = false;
-      
-      track.style.cursor = 'grab';
-      
-      track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        hasMoved = false;
-        track.style.cursor = 'grabbing';
-        startX = e.pageX;
-        scrollLeft = currentIndex;
-      });
-      
-      document.addEventListener('mouseup', (e) => {
-        if (isDown && hasMoved) {
-          const movedDistance = startX - e.pageX;
-          if (Math.abs(movedDistance) > 50) {
-            const cardsPerView = getCardsPerView();
-            const maxIndex = Math.max(0, totalCards - cardsPerView);
-            if (movedDistance > 0) {
-              currentIndex = Math.min(maxIndex, currentIndex + 1);
-            } else {
-              currentIndex = Math.max(0, currentIndex - 1);
-            }
-            updateCarousel();
-          }
-        }
-        isDown = false;
-        track.style.cursor = 'grab';
-      });
-      
-      track.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX;
-        const walk = x - startX;
-        
-        if (Math.abs(walk) > 10) {
-          hasMoved = true;
-        }
-      });
-      
-      track.addEventListener('mouseleave', () => {
-        if (isDown) {
-          isDown = false;
-          track.style.cursor = 'grab';
-        }
-      });
-
-      let resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(updateCarousel, 100);
-      });
-      
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      currentIndex = Math.max(0, currentIndex - 1);
       updateCarousel();
     });
-    </script>
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      const cardsPerView = getCardsPerView();
+      const maxIndex = Math.max(0, totalCards - cardsPerView);
+      currentIndex = Math.min(maxIndex, currentIndex + 1);
+      updateCarousel();
+    });
+  }
+
+  // Mouse and Touch drag functionality
+  let isDown = false;
+  let startX;
+  let hasMoved = false;
+  
+  track.style.cursor = 'grab';
+  
+  // Mouse events
+  track.addEventListener('mousedown', handleStart);
+  document.addEventListener('mouseup', handleEnd);
+  track.addEventListener('mousemove', handleMove);
+  track.addEventListener('mouseleave', handleCancel);
+  
+  // Touch events for mobile
+  track.addEventListener('touchstart', handleStart, { passive: true });
+  track.addEventListener('touchend', handleEnd);
+  track.addEventListener('touchmove', handleMove, { passive: false });
+  
+  function handleStart(e) {
+    isDown = true;
+    hasMoved = false;
+    track.style.cursor = 'grabbing';
+    
+    const clientX = e.type === 'touchstart' ? e.touches[0].pageX : e.pageX;
+    startX = clientX;
+  }
+  
+  function handleEnd(e) {
+    if (isDown && hasMoved) {
+      const clientX = e.type === 'touchend' ? e.changedTouches[0].pageX : e.pageX;
+      const movedDistance = startX - clientX;
+      
+      if (Math.abs(movedDistance) > 50) {
+        const cardsPerView = getCardsPerView();
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        if (movedDistance > 0) {
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+        } else {
+          currentIndex = Math.max(0, currentIndex - 1);
+        }
+        updateCarousel();
+      }
+    }
+    isDown = false;
+    track.style.cursor = 'grab';
+  }
+  
+  function handleMove(e) {
+    if (!isDown) return;
+    
+    const clientX = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
+    const walk = clientX - startX;
+    
+    if (Math.abs(walk) > 10) {
+      hasMoved = true;
+      if (e.type === 'touchmove') {
+        e.preventDefault();
+      }
+    }
+  }
+  
+  function handleCancel() {
+    if (isDown) {
+      isDown = false;
+      track.style.cursor = 'grab';
+    }
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateCarousel, 100);
+  });
+  
+  updateCarousel();
+});
+</script>
 
     {% schema %}
     {
