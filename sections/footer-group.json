@@ -18,7 +18,7 @@
           "type": "text",
           "settings": {
             "heading": "Explore XL Feet",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "subtext": "",
             "location_1": "XLfeet Inc. 242 Fillmore Ave East, St Paul, MN 55107",
             "email": "customercare@xlfeet.com",
             "phone_1": "+1 (651) 797-6000",
@@ -67,7 +67,9 @@
         "show_policy": false,
         "margin_top": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "padding_left": 80,
+        "padding_right": 80
       }
     }
   },

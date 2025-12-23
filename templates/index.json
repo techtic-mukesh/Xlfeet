@@ -101,12 +101,15 @@
         "change_slides_speed": 5,
         "image_behavior": "none",
         "show_text_below": false,
-        "accessibility_info": "Slideshow about our brand"
+        "accessibility_info": "Slideshow about our brand",
+        "padding_left": 80,
+        "padding_right": 80
       }
     },
     "featured_collection_tBKqyW": {
       "type": "featured-collection",
       "settings": {
+        "custom_class": "",
         "collection": "all",
         "products_to_show": 8,
         "title": "For every Big Foot, we have the size.",
@@ -118,6 +121,8 @@
         "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": false,
+        "show_view_all_text": "View All",
+        "show_view_all_url": "",
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
         "button_type": "add_to_cart",
@@ -137,7 +142,7 @@
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_left": 80,
-        "padding_right": 0
+        "padding_right": 80
       }
     },
     "shop_by_width_size_J6EitD": {
@@ -355,7 +360,7 @@
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_left": 80,
-        "padding_right": 0
+        "padding_right": 80
       }
     },
     "image_banner": {
@@ -424,17 +429,20 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "custom_class": "collection_grid_section",
         "collection": "all",
         "products_to_show": 4,
-        "title": "For every Big Foot, we have the size.",
+        "title": "Exclusive final run, no restocks.",
         "heading_size": "h1",
-        "description": "<p>Shop New Arrivals</p>",
+        "description": "<p>Limited. Final. Forever.</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
+        "show_view_all_text": "View All",
+        "show_view_all_url": "shopify://collections",
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
         "button_type": "buy_now",
