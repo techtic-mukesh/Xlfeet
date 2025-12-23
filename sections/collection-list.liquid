@@ -361,8 +361,8 @@
           {%- endif -%}
           {%- if section.settings.title != blank -%}
             <h2 class="cl-title">{{ section.settings.title }}</h2>
-          {%- endif -%}
-        </div>
+        {%- endif -%}
+      </div>
         
         <div class="cl-header-right">
           {%- if section.settings.header_button_type == 'view_all' -%}
@@ -379,14 +379,14 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
-              </button>
+          </button>
               <button type="button" class="cl-arrow cl-arrow-next" aria-label="Next" data-cl-slider-next="{{ section.id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
-              </button>
-            </div>
-          {%- endif -%}
+          </button>
+        </div>
+      {%- endif -%}
         </div>
       </div>
   
@@ -445,13 +445,13 @@
                     <line x1="7" y1="17" x2="17" y2="7"></line>
                     <polyline points="7 7 17 7 17 17"></polyline>
                   </svg>
-                </a>
-              </div>
+        </a>
+      </div>
             </div>
           {%- endfor -%}
-        {%- endif -%}
-      </div>
-    </div>
+    {%- endif -%}
+  </div>
+</div>
   </div>
 </div>
 
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"
-    },
+    },    
     {
       "type": "select",
       "id": "header_button_type",

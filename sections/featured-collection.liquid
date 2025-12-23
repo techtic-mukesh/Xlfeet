@@ -532,16 +532,16 @@
       <div class="fc-header-left">
         {%- if section.settings.description != blank or section.settings.show_description and section.settings.collection.description != empty -%}
           <p class="fc-subtitle">
-            {%- if section.settings.show_description -%}
+          {%- if section.settings.show_description -%}
               {{ section.settings.collection.description | strip_html }}
-            {%- else -%}
+          {%- else -%}
               {{ section.settings.description | strip_html }}
             {%- endif -%}
           </p>
         {%- endif -%}
-        {%- if section.settings.title != blank -%}
+    {%- if section.settings.title != blank -%}
           <h2 class="fc-title">{{ section.settings.title }}</h2>
-        {%- endif -%}
+      {%- endif -%}
       </div>
       
       <div class="fc-header-right">
@@ -555,7 +555,7 @@
                 </svg>
                 </span>
           </a>
-        {%- endif -%}
+      {%- endif -%}
         
         {%- if section.settings.enable_desktop_slider -%}
           <div class="fc-arrows">
@@ -576,8 +576,8 @@
 
     <!-- Products Grid or Slider -->
     <div class="{% if section.settings.enable_desktop_slider %}fc-products-slider{% else %}fc-products-grid{% endif %}" id="fc-container-{{ section.id }}">
-      {%- if section.settings.collection.products.size > 0 -%}
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        {%- if section.settings.collection.products.size > 0 -%}
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
           <div class="fc-product-card" data-product-id="{{ product.id }}">
             <div class="fc-product-image-wrapper">
               <!-- Product Image -->
@@ -602,7 +602,7 @@
                   {%- endif -%}
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'fc-product-image' }}
-                {% endif %}
+              {% endif %}
               </a>
               
               <!-- Add to Cart / Buy Now on Hover -->
@@ -734,14 +734,14 @@
                           <span class="fc-swatch-color" style="background-color: {{ value | handleize }};"></span>
                         {%- endif -%}
                       </button>
-                    {%- endfor -%}
+            {%- endfor -%}
                   </div>
                 {%- endif -%}
               {%- endif -%}
             </div>
           </div>
         {%- endfor -%}
-      {%- else -%}
+        {%- else -%}
         {%- for i in (1..section.settings.products_to_show) -%}
           <div class="fc-product-card">
             <div class="fc-product-image-wrapper">
@@ -756,14 +756,14 @@
               %}
               {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
               {{ placeholder_image | placeholder_svg_tag: 'fc-product-image' }}
-            </div>
+          </div>
             <div class="fc-product-info">
               <p class="fc-product-title">Example Product Title</p>
               <p class="fc-product-price">$99.99</p>
-            </div>
-          </div>
+        </div>
+      </div>
         {%- endfor -%}
-      {%- endif -%}
+    {%- endif -%}
     </div>
 
     {% if section.settings.image_shape == 'arch' %}
@@ -1110,7 +1110,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": 4,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
     },
-    {
+        {
       "type": "checkbox",
       "id": "enable_desktop_slider",
       "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
