@@ -352,7 +352,7 @@
         "header_button_type": "view_all",
         "card_width": 300,
         "card_height": 400,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "enable_carousel": true,
         "color_scheme": "",
         "columns_mobile": "2",
