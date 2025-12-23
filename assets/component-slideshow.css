@@ -221,7 +221,7 @@ slideshow-component:not(.page-width) .slider-buttons {
 
 .banner__heading.inline-richtext {
   color: #fff;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica Neue';
   line-height: 1.1;
 }
 
