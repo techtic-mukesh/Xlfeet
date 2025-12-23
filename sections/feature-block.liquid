@@ -6,6 +6,7 @@
 
   .feature-blocks-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
+        border-top: 1px solid #e8e8e8;
   }
 
   .feature-blocks-{{ section.id }} .feature-grid {
@@ -27,13 +28,26 @@
 
   .feature-blocks-{{ section.id }} .feature-block {
     text-align: center;
-    /* padding: 15px; */
+    padding: 15px 0;
+     border-bottom: 1px solid #e8e8e8;
+  }
+
+  /* Mobile: Remove border from last row items */
+  .feature-blocks-{{ section.id }} .feature-block:nth-last-child(-n+{{ section.settings.mobile_columns }}) {
+    border-bottom: none;
   }
 
   @media screen and (min-width: 750px) {
     .feature-blocks-{{ section.id }} .feature-block {
       text-align: left;
       padding: 20px 20px 20px 0px;
+      border-bottom: none;
+      border-right: 1px solid #e8e8e8;
+    }
+
+    /* Desktop: Remove border from last column items */
+    .feature-blocks-{{ section.id }} .feature-block:nth-child({{ section.settings.desktop_columns }}n) {
+      border-right: none;
     }
   }
 
