@@ -41,7 +41,7 @@
   color: {{ section.settings.title_color }};
   font-size: clamp(26px, 5vw, 48px);
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: {{ section.settings.text_transform }};
   margin: 0;
 }
 {% endstyle %}
@@ -124,7 +124,20 @@
       "id": "title_color",
       "label": "Title Color",
       "default": "#ffffff"
+    },
+    {
+    "type": "select",
+    "id": "text_transform",
+    "label": "Title Text Transform",
+    "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "lowercase", "label": "lowercase" }
+    ],
+    "default": "uppercase"
     }
+
   ],
   "presets": [
     {
