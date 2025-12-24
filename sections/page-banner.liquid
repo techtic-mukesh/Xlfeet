@@ -39,11 +39,16 @@
 
 .page-banner-{{ section.id }} h1 {
   color: {{ section.settings.title_color }};
-  font-size: clamp(26px, 5vw, 48px);
+  font-size: clamp(
+    {{ section.settings.font_size_min }}px,
+    5vw,
+    {{ section.settings.font_size_max }}px
+  );
   font-weight: 700;
   text-transform: {{ section.settings.text_transform }};
   margin: 0;
 }
+
 {% endstyle %}
 
 <section class="page-banner-{{ section.id }}">
