@@ -55,7 +55,7 @@
     {% endif %}
 
     <img
-      src="{{ section.settings.desktop_image | image_url }}"
+      src="{{ section.settings.desktop_image | image_url : 'master' }}"
       alt="{{ page.title }}"
       loading="lazy">
   </picture>
