@@ -1,10 +1,6 @@
 {{ 'text-with-video.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-.text-video-{{ section.id }} {
-  background: rgb(var(--color-background));
-  color: rgb(var(--color-foreground));
-}
 
 .text-video-{{ section.id }} .wrapper{
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
