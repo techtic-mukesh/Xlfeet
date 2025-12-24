@@ -39,9 +39,9 @@
 .text-video-{{ section.id }} iframe,
 .text-video-{{ section.id }} video {
   width: 100%;
-  height: 100%;
   aspect-ratio: 16 / 9;
   display: block;
+  border: 0;
 }
 {% endstyle %}
 
@@ -74,12 +74,33 @@
               muted: false
           }}
         {% elsif section.settings.video_url != blank %}
-          <iframe
-            src="{{ section.settings.video_url }}"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
+
+          {% assign video_url = section.settings.video_url %}
+
+          {% if video_url contains 'youtu' %}
+            {% assign video_id = video_url
+              | replace: 'https://youtu.be/', ''
+              | replace: 'https://www.youtube.com/watch?v=', ''
+              | split: '&'
+              | first
+            %}
+            <iframe
+              src="https://www.youtube.com/embed/{{ video_id }}"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+
+          {% elsif video_url contains 'vimeo' %}
+            {% assign video_id = video_url | split: '/' | last %}
+            <iframe
+              src="https://player.vimeo.com/video/{{ video_id }}"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          {% endif %}
+
         {% endif %}
       </div>
 
@@ -118,7 +139,7 @@
       "type": "url",
       "id": "video_url",
       "label": "YouTube / Vimeo URL",
-      "info": "Used if Shopify video is not set"
+      "info": "Paste normal YouTube or Vimeo link"
     },
     {
       "type": "range",
