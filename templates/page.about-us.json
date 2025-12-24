@@ -11,13 +11,29 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "page_banner_K4NTqq": {
+      "type": "page-banner",
+      "name": "Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/about-us-banner.png",
+        "mobile_image": "shopify://shop_images/about-us-banner.png",
+        "gradient_direction": "to left",
+        "gradient_color": "#fff22d",
+        "gradient_opacity": 100,
+        "gradient_color_2": "#94d910",
+        "gradient_opacity_2": 100,
+        "title_color": "#ffffff"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "page_banner_K4NTqq"
   ]
 }
