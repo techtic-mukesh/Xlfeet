@@ -23,11 +23,10 @@
       "settings": {
         "desktop_image": "shopify://shop_images/about-us-banner.png",
         "mobile_image": "shopify://shop_images/about-us-banner.png",
-        "gradient_direction": "to right",
+        "gradient_angle": "90deg",
         "gradient_color": "#000000",
-        "gradient_opacity": 60,
-        "gradient_color_2": "#000000",
-        "gradient_opacity_2": 0,
+        "gradient_opacity_start": 100,
+        "gradient_opacity_end": 100,
         "title_color": "#ffffff"
       }
     }
