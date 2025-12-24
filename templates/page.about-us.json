@@ -47,11 +47,55 @@
         "padding_top": 70,
         "padding_bottom": 70
       }
+    },
+    "image_feature_grid_Rc9NHK": {
+      "type": "image-feature-grid",
+      "blocks": {
+        "item_yqfmB3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/about_img_2.webp",
+            "small_text": "Offering you",
+            "heading": "Multitude Of Styles",
+            "link": ""
+          }
+        },
+        "item_6trWGU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/about_img_3.webp",
+            "small_text": "Twin Cities",
+            "heading": "physical store origin",
+            "link": ""
+          }
+        },
+        "item_gCiCFe": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/about_img_4.webp",
+            "small_text": "to pro athletes",
+            "heading": "Serving Average Joe",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_yqfmB3",
+        "item_6trWGU",
+        "item_gCiCFe"
+      ],
+      "name": "Image Feature Grid",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
     "page_banner_K4NTqq",
-    "text_with_video_qYrGhJ"
+    "text_with_video_qYrGhJ",
+    "image_feature_grid_Rc9NHK"
   ]
 }
