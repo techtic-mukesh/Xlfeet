@@ -56,11 +56,11 @@
     {% if section.settings.mobile_image %}
       <source
         media="(max-width: 749px)"
-        srcset="{{ section.settings.mobile_image | image_url }}">
+        srcset="{{ section.settings.mobile_image |  img_url : 'master' }}">
     {% endif %}
 
     <img
-      src="{{ section.settings.desktop_image | image_url : 'master' }}"
+      src="{{ section.settings.desktop_image | img_url : 'master' }}"
       alt="{{ page.title }}"
       loading="lazy">
   </picture>
