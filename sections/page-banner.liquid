@@ -1,7 +1,6 @@
 {% style %}
 .page-banner-{{ section.id }} {
   position: relative;
-  width: 100%;
 }
 
 .page-banner-{{ section.id }} picture,
@@ -15,9 +14,19 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    {{ section.settings.gradient_direction }},
-    {{ section.settings.gradient_color }} {{ section.settings.gradient_opacity }}%,
-    {{ section.settings.gradient_color_2 }} {{ section.settings.gradient_opacity_2 }}%
+    {{ section.settings.gradient_angle }},
+    rgba(
+      {{ section.settings.gradient_color.red }},
+      {{ section.settings.gradient_color.green }},
+      {{ section.settings.gradient_color.blue }},
+      {{ section.settings.gradient_opacity_start | divided_by: 100.0 }}
+    ) 0%,
+    rgba(
+      {{ section.settings.gradient_color.red }},
+      {{ section.settings.gradient_color.green }},
+      {{ section.settings.gradient_color.blue }},
+      {{ section.settings.gradient_opacity_end | divided_by: 100.0 }}
+    ) 100%
   );
 }
 
@@ -32,7 +41,6 @@
   color: {{ section.settings.title_color }};
   font-size: clamp(26px, 5vw, 48px);
   font-weight: 700;
-  letter-spacing: 1px;
   text-transform: uppercase;
   margin: 0;
 }
@@ -46,77 +54,69 @@
         srcset="{{ section.settings.mobile_image | image_url }}">
     {% endif %}
 
-    {% if section.settings.desktop_image %}
-      <img
-        src="{{ section.settings.desktop_image | image_url }}"
-        alt="{{ page.title }}"
-        loading="lazy">
-    {% endif %}
+    <img
+      src="{{ section.settings.desktop_image | image_url }}"
+      alt="{{ page.title }}"
+      loading="lazy">
   </picture>
 
-  <div class="overlay"> </div>
+  <div class="overlay"></div>
 
   <div class="content">
     <div class="page-width">
-      <h1>
-        {{ page.title | default: collection.title | default: product.title }}
-      </h1>
+      <h1>{{ page.title | default: collection.title | default: product.title }}</h1>
     </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Page Banner (Clean IMG)",
+  "name": "Page Banner",
   "settings": [
     {
       "type": "image_picker",
       "id": "desktop_image",
-      "label": "Desktop Banner Image"
+      "label": "Desktop Image"
     },
     {
       "type": "image_picker",
       "id": "mobile_image",
-      "label": "Mobile Banner Image"
+      "label": "Mobile Image"
     },
     {
       "type": "select",
-      "id": "gradient_direction",
+      "id": "gradient_angle",
       "label": "Gradient Direction",
       "options": [
-        { "value": "to right", "label": "Left → Right" },
-        { "value": "to left", "label": "Right → Left" },
-        { "value": "to bottom", "label": "Top → Bottom" },
-        { "value": "to top", "label": "Bottom → Top" }
+        { "value": "0deg", "label": "Top → Bottom" },
+        { "value": "90deg", "label": "Left → Right" },
+        { "value": "180deg", "label": "Bottom → Top" },
+        { "value": "270deg", "label": "Right → Left" }
       ],
-      "default": "to right"
+      "default": "90deg"
     },
     {
       "type": "color",
       "id": "gradient_color",
-      "label": "Gradient Color 1",
+      "label": "Gradient Color",
       "default": "#000000"
     },
     {
       "type": "range",
-      "id": "gradient_opacity",
-      "label": "Gradient Opacity 1 (%)",
+      "id": "gradient_opacity_start",
+      "label": "Start Opacity (%)",
       "min": 0,
       "max": 100,
-      "default": 60
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_2",
-      "label": "Gradient Color 2",
-      "default": "#000000"
+      "step": 5,
+      "default": 40
     },
     {
       "type": "range",
-      "id": "gradient_opacity_2",
-      "label": "Gradient Opacity 2 (%)",
+      "id": "gradient_opacity_end",
+      "label": "End Opacity (%)",
       "min": 0,
       "max": 100,
+      "step": 5,
       "default": 0
     },
     {
@@ -132,4 +132,5 @@
     }
   ]
 }
+
 {% endschema %}
