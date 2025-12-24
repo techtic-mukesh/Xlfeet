@@ -22,6 +22,15 @@
   }
 }
 
+/* LEFT / RIGHT SWITCH */
+.text-video-{{ section.id }}.video-left .content-col {
+  order: 2;
+}
+
+.text-video-{{ section.id }}.video-left .video-col {
+  order: 1;
+}
+
 .text-video-{{ section.id }} h2 {
   font-size: clamp(24px, 3vw, 36px);
   margin-bottom: 16px;
@@ -65,12 +74,14 @@
 }
 {% endstyle %}
 
-<section class="text-video-{{ section.id }} color-{{ section.settings.color_scheme }}">
+<section
+  class="text-video-{{ section.id }} color-{{ section.settings.color_scheme }}
+  {% if section.settings.video_position == 'left' %}video-left{% endif %}">
   <div class="page-width wrapper">
     <div class="grid">
 
-      <!-- LEFT CONTENT -->
-      <div>
+      <!-- TEXT CONTENT -->
+      <div class="content-col">
         {% if section.settings.heading != blank %}
           <h2>{{ section.settings.heading }}</h2>
         {% endif %}
@@ -82,8 +93,8 @@
         {% endif %}
       </div>
 
-      <!-- RIGHT VIDEO -->
-      <div class="video-wrapper">
+      <!-- VIDEO -->
+      <div class="video-wrapper video-col">
 
         {% if section.settings.shopify_video != blank %}
           {{
@@ -135,8 +146,24 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "background-1"
+      "label": "t:sections.multirow.settings.container_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "Video position",
+      "options": [
+        {
+          "value": "right",
+          "label": "Video on right"
+        },
+        {
+          "value": "left",
+          "label": "Video on left"
+        }
+      ],
+      "default": "right"
     },
     {
       "type": "text",
