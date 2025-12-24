@@ -27,7 +27,8 @@
         "gradient_color": "#000000",
         "gradient_opacity_start": 40,
         "gradient_opacity_end": 0,
-        "title_color": "#ffffff"
+        "title_color": "#ffffff",
+        "text_transform": "uppercase"
       }
     }
   },
