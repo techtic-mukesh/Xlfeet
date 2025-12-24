@@ -71,8 +71,8 @@
             | video_tag:
               autoplay: true,
               muted: true,
-              loop: true,
-              controls: false
+              controls: true,
+              loop: false
           }}
 
         {% elsif section.settings.video_url != blank %}
@@ -86,7 +86,7 @@
               | first
             %}
             <iframe
-              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist={{ video_id }}"
+              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1"
               allow="autoplay; encrypted-media"
               allowfullscreen
               loading="lazy">
@@ -95,7 +95,7 @@
           {% elsif video_url contains 'vimeo' %}
             {% assign video_id = video_url | split: '/' | last %}
             <iframe
-              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&muted=1&loop=1&background=1"
+              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&muted=1"
               allow="autoplay; encrypted-media"
               allowfullscreen
               loading="lazy">
