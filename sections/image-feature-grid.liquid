@@ -1,0 +1,191 @@
+{% style %}
+.image-overlay-grid {
+  background: rgb(var(--color-background));
+}
+
+.image-overlay-grid__wrapper {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.image-overlay-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .image-overlay-grid__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.image-overlay-grid__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+}
+
+.image-overlay-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-overlay-grid__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.2)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.image-overlay-grid__small-text {
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.image-overlay-grid__heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.image-overlay-grid__item a {
+  display: block;
+  height: 100%;
+}
+{% endstyle %}
+
+<section
+  class="image-overlay-grid color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="image-overlay-grid__wrapper">
+    <div class="image-overlay-grid__grid">
+      {% for block in section.blocks %}
+        <div class="image-overlay-grid__item" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}">
+          {% endif %}
+
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy'
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+
+          <div class="image-overlay-grid__overlay">
+            {% if block.settings.small_text != blank %}
+              <div class="image-overlay-grid__small-text">
+                {{ block.settings.small_text }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.heading != blank %}
+              <div class="image-overlay-grid__heading">
+                {{ block.settings.heading }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image Feature Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Image item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "small_text",
+          "label": "Small text",
+          "default": "Offering you"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Multitude Of Styles"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Image Feature Grid",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
