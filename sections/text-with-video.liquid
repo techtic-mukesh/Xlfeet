@@ -81,6 +81,9 @@
 .text-video-{{ section.id }} .video-wrapper:hover iframe {
   pointer-events: auto;
 }
+.video_description{
+    color:{{ section.settings.description_color }}
+}
 {% endstyle %}
 
 <section
@@ -183,6 +186,12 @@
       "type": "richtext",
       "id": "text",
       "label": "Text"
+    },
+    {
+     "type": "color",
+     "id": "description_color",
+     "label": "Descripton Color",
+     "default":"#646464"
     },
     {
       "type": "video",
