@@ -1,0 +1,50 @@
+<div class="vertical-media-gallery">
+
+  <!-- THUMBNAILS -->
+  <div class="swiper vertical-thumbnails-swiper">
+    <div class="swiper-wrapper">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+          <div class="swiper-slide" data-media-id="{{ media.id }}">
+            {{ media.preview_image | image_url: width: 120 | image_tag }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="swiper vertical-main-swiper">
+    <div class="swiper-wrapper">
+      {% for media in product.media %}
+        <div class="swiper-slide" data-media-id="{{ media.id }}">
+          {% render 'product-thumbnail',
+            media: media,
+            position: forloop.index,
+            modal_id: section.id
+          %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- CUSTOM SVG ARROWS -->
+    <div class="main_arrow_bg">
+        <div class="main_product_arrow">
+        <button class="swiper-button-prev custom-arrow" aria-label="Previous">
+            <!-- LEFT SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none">
+            <path d="M5.68333 0.625L0.625 6.18917L5.68333 11.7533M14.7917 6.18917H0.766667" stroke="#333333" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        <button class="swiper-button-next custom-arrow" aria-label="Next">
+            <!-- RIGHT SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none">
+                <path d="M9.73333 0.625L14.7917 6.18917L9.73333 11.7533M0.625 6.18917H14.65" stroke="#333333" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+        </button>
+        </div>
+    </div>
+
+  </div>
+</div>

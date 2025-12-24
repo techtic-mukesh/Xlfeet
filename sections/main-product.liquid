@@ -75,9 +75,45 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+      <div class="grid__item product__media-wrapper {% if section.settings.gallery_layout == 'thumbnail_slider' %} vertical-gallery {% endif %}">
+
+  {% if section.settings.gallery_layout != 'thumbnail_slider' %}
+    {% render 'product-media-gallery', variant_images: variant_images %}
+  {% else %}
+
+    {% assign gallery_media = variant_images | default: product.media %}
+
+    <div class="vertical-media-gallery">
+
+      <!-- THUMBNAILS (SWIPER) -->
+      <div class="swiper vertical-thumbnails-swiper">
+        <div class="swiper-wrapper">
+          {% for media in gallery_media %}
+            {% if media.media_type == 'image' %}
+              <div
+                class="swiper-slide"
+                data-media-id="{{ media.id }}"
+              >
+                {{ media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
+
+      <!-- MAIN MEDIA (DAWN ONLY – NO SWIPER) -->
+      <div class="vertical-main-media">
+        {% render 'product-media-swiper',
+          variant_images: variant_images
+        %}
+      </div>
+
+    </div>
+
+  {% endif %}
+</div>
+
+
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
@@ -737,6 +773,105 @@
     </script>
   </div>
 </product-info>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  document.querySelectorAll('.vertical-media-gallery').forEach((gallery) => {
+
+    const thumbsEl = gallery.querySelector('.vertical-thumbnails-swiper');
+    const mainEl   = gallery.querySelector('.vertical-main-swiper');
+
+    if (!thumbsEl || !mainEl) return;
+
+    /* ✅ THUMBNAILS */
+    const thumbs = new Swiper(thumbsEl, {
+      slidesPerView: 3,
+      spaceBetween: 10,
+      watchSlidesProgress: true,
+      slideToClickedSlide: true,
+      centeredSlides: true,
+      direction: window.innerWidth > 749 ? 'vertical' : 'horizontal',
+      observer: true,
+      observeParents: true,
+      breakpoints: {
+        0: {
+          direction: 'horizontal',
+          centeredSlides: false
+        },
+        750: {
+          direction: 'vertical',
+          centeredSlides: true
+        }
+      },
+      on: {
+        init(swiper) {
+          // 🔥 FIX active border on load
+          swiper.slides[0]?.classList.add('swiper-slide-thumb-active');
+        }
+      }
+    });
+
+    /* ✅ MAIN SLIDER */
+   const main = new Swiper(mainEl, {
+      spaceBetween: 10,
+      observer: true,
+      observeParents: true,
+      navigation: {
+        nextEl: gallery.querySelector('.swiper-button-next'),
+        prevEl: gallery.querySelector('.swiper-button-prev')
+      }
+    });
+
+
+    /* 🔥 THUMB CLICK → MAIN */
+    thumbs.on('click', () => {
+      if (typeof thumbs.clickedIndex !== 'undefined') {
+        main.slideTo(thumbs.clickedIndex);
+      }
+    });
+
+    /* 🔥 MAIN → THUMB SYNC (Splide-like) */
+    main.on('slideChange', () => {
+      const index = main.activeIndex;
+
+      thumbs.slideTo(index, 300, true);
+
+      thumbs.slides.forEach(slide =>
+        slide.classList.remove('swiper-slide-thumb-active')
+      );
+      thumbs.slides[index]?.classList.add('swiper-slide-thumb-active');
+    });
+
+    /* 🔥 VARIANT IMAGE SYNC */
+    document.addEventListener('variant:change', (event) => {
+      const mediaId = event.detail?.variant?.featured_media?.id;
+      if (!mediaId) return;
+
+      const slides = [...mainEl.querySelectorAll('.swiper-slide')];
+      const index = slides.findIndex(slide => slide.dataset.mediaId == mediaId);
+
+      if (index !== -1) {
+        main.slideTo(index, 0);
+        thumbs.slideTo(index, 0, true);
+
+        thumbs.slides.forEach(slide =>
+          slide.classList.remove('swiper-slide-thumb-active')
+        );
+        thumbs.slides[index]?.classList.add('swiper-slide-thumb-active');
+      }
+    });
+
+  });
+
+});
+</script>
+
+
+
+
+
+
+
 
 {% schema %}
 {
