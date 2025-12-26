@@ -189,7 +189,7 @@
       <div class="timeline-banner page-width">
         {{ section.settings.image | image_url: width: 2000 | image_tag }}
         <div class="timeline-banner__overlay">
-          <h2>{{ section.settings.banner_text }}</h2>
+          <div>{{ section.settings.banner_text }}</div>
         </div>
       </div>
     {% endif %}
@@ -223,10 +223,9 @@
       "label": "Banner image"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "banner_text",
-      "label": "Banner overlay text",
-      "default": "Expanding To Even Better Serve The Big And Tall Community"
+      "label": "Banner overlay text"
     },
     {
       "type": "color_scheme",
