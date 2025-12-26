@@ -161,7 +161,7 @@
   <div class="wrapper">
 
     <!-- TEXT -->
-    <div class="timeline-content">
+    <div class="timeline-content ">
       {{ section.settings.text }}
     </div>
 
@@ -199,6 +199,16 @@
       "id": "text",
       "label": "Top text",
       "default": "<p>Add your brand story or description here.</p>"
+    },
+    {
+    "type": "range",
+    "id": "custom_page_width",
+    "min": 1000,
+    "max": 1600,
+    "step": 10,
+    "default": 1200,
+    "unit": "px",
+    "label": "Content Page Width"
     },
     {
       "type": "image_picker",
