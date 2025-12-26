@@ -78,7 +78,7 @@
     <div class="section-header">
     <div>
         <div class="comp_heighlight_heading">
-            <img src="{{ section.settings.heading_img | img_url  : 'master' }}">
+           {% if section.settings.heading_img !=blank %} <img src="{{ section.settings.heading_img | img_url  : 'master' }}"> {% endif %}
             <span>
                 {{ section.settings.company_heading }}
             </span>
