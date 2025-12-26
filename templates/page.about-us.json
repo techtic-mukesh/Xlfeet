@@ -217,6 +217,63 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "company_highlights_AzbEGh": {
+      "type": "company-highlights",
+      "blocks": {
+        "pill_CW36nW": {
+          "type": "pill",
+          "settings": {
+            "year": "2012",
+            "description": "Moved into first physical storeBecame full-time owner at xlfeet store",
+            "block_color_scheme": ""
+          }
+        },
+        "card_gQmrTB": {
+          "type": "card",
+          "settings": {
+            "title": "Card title"
+          }
+        },
+        "card_qLerzL": {
+          "type": "card",
+          "settings": {
+            "title": "Card title"
+          }
+        },
+        "card_8YaYmh": {
+          "type": "card",
+          "settings": {
+            "title": "Card title"
+          }
+        },
+        "card_kfrbw4": {
+          "type": "card",
+          "settings": {
+            "title": "Card title"
+          }
+        }
+      },
+      "block_order": [
+        "pill_CW36nW",
+        "card_gQmrTB",
+        "card_qLerzL",
+        "card_8YaYmh",
+        "card_kfrbw4"
+      ],
+      "name": "Company Highlights",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "heading_img": "shopify://shop_images/image_685.png",
+        "company_heading": "PHYSICAL STOREFRONT experience",
+        "heading_block_color_scheme": "scheme-1",
+        "description": "",
+        "custom_page_width": 1200,
+        "show_pills": true,
+        "grid_columns": 4,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -225,6 +282,7 @@
     "text_with_video_qYrGhJ",
     "image_feature_grid_Rc9NHK",
     "company_journey_Qhxntg",
-    "company_highlights_zjbCWe"
+    "company_highlights_zjbCWe",
+    "company_highlights_AzbEGh"
   ]
 }
