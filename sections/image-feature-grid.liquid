@@ -79,6 +79,7 @@
 {% for block in section.blocks %}
     .block-{{ block.id }} .image-overlay-grid__small-text , .block-{{ block.id }} .image-overlay-grid__heading h2{
       color:{{ block.settings.text_color }};
+      margin:0;
     }
 {% endfor %}
 {% endstyle %}
