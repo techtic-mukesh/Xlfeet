@@ -163,29 +163,33 @@
         "card_eJLGp8": {
           "type": "card",
           "settings": {
-            "title": "Card title",
-            "text": "Short description goes here."
+            "image": "shopify://shop_images/Rectangle_40201_abecaed3-d69d-450e-9614-a439aede96f1.png",
+            "title": "Adrian’s Home where XLFeet began out of a spare bedroom.",
+            "text": ""
           }
         },
         "card_8RNFkq": {
           "type": "card",
           "settings": {
-            "title": "Card title",
-            "text": "Short description goes here."
+            "image": "shopify://shop_images/Rectangle_40201_1_920eb514-ed93-4f2c-b7d1-56284d9240b2.png",
+            "title": "Photo light box for manually creating product images for the website.",
+            "text": ""
           }
         },
         "card_zizrPk": {
           "type": "card",
           "settings": {
-            "title": "Card title",
-            "text": "Short description goes here."
+            "image": "shopify://shop_images/Rectangle_40201_2_6c87e082-49fe-44b3-be13-31a841e61af6.png",
+            "title": "The van Adrian believed would deliver his store to the customer’s door.",
+            "text": ""
           }
         },
         "card_pA8wqM": {
           "type": "card",
           "settings": {
-            "title": "Card title",
-            "text": "Short description goes here."
+            "image": "shopify://shop_images/Rectangle_40201_2_6c87e082-49fe-44b3-be13-31a841e61af6.png",
+            "title": "Adrian’s tablet for accepting mobile payments.",
+            "text": ""
           }
         }
       },
