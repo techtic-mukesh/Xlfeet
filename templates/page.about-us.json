@@ -57,7 +57,8 @@
             "image": "shopify://shop_images/about_img_2.webp",
             "small_text": "Offering you",
             "heading": "Multitude Of Styles",
-            "link": ""
+            "link": "",
+            "text_color": "#ffffff"
           }
         },
         "item_6trWGU": {
@@ -66,7 +67,8 @@
             "image": "shopify://shop_images/about_img_3.webp",
             "small_text": "Twin Cities",
             "heading": "physical store origin",
-            "link": ""
+            "link": "",
+            "text_color": "#ffffff"
           }
         },
         "item_gCiCFe": {
@@ -75,7 +77,8 @@
             "image": "shopify://shop_images/about_img_4.webp",
             "small_text": "to pro athletes",
             "heading": "Serving Average Joe",
-            "link": ""
+            "link": "",
+            "text_color": "#ffffff"
           }
         }
       },
@@ -90,12 +93,53 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "company_journey_Qhxntg": {
+      "type": "company-journey",
+      "blocks": {
+        "timeline_t7Cxh4": {
+          "type": "timeline",
+          "settings": {
+            "year": "1990",
+            "description": "Age 7, Size 7"
+          }
+        },
+        "timeline_QmNN6p": {
+          "type": "timeline",
+          "settings": {
+            "year": "1990",
+            "description": "Age 7, Size 7"
+          }
+        },
+        "timeline_cUKk79": {
+          "type": "timeline",
+          "settings": {
+            "year": "1990",
+            "description": "Age 7, Size 7"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_t7Cxh4",
+        "timeline_QmNN6p",
+        "timeline_cUKk79"
+      ],
+      "name": "Our Story Timeline",
+      "settings": {
+        "text": "<p>At age 16 his feet finally stopped growing. He would eventually learn that he was not the only one in this quandary. He didn’t know how common it was for people with big feet to have their shoe size match their age until deep into their teenage years. Virtually all the customers at XLFeet have shared this same experience; and if you are a parent with a son following in those same footsteps, beware, it’s likely his feet are not done growing.<br/><br/>The struggle continued throughout his early adult life – difficulty finding everyday shoes, having to wear sneakers instead of boots when sledding in the snow, special ordering dress shoes when renting a tux, and no hope of finding skis, skates or other specialty footwear – problems that are too well known by those with extra large/wide feet.<br/><br/>One day while sitting in the math lab at college, Adrian noticed a foul odor and discovered it was the disintegrating soles of the cheap clearance shoes he was wearing. Beginning to fret about having to hunt down a pair of size 16 shoes again, it was frustrating as he always had to settle for very few shoes to choose from whether comfortable or not. And fashionable? That was out of the question. It was then that he committed to do something about it and started his own shoe company.</p>",
+        "image": "shopify://shop_images/exploring-banner.png",
+        "banner_text": "Expanding To Even Better Serve The Big And Tall Community",
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
     "page_banner_K4NTqq",
     "text_with_video_qYrGhJ",
-    "image_feature_grid_Rc9NHK"
+    "image_feature_grid_Rc9NHK",
+    "company_journey_Qhxntg"
   ]
 }
