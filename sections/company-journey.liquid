@@ -4,15 +4,6 @@
   color: rgb(var(--color-foreground));
 }
 
-.timeline-section-{{ section.id }} .wrapper {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding-top: {{ section.settings.padding_top }}px;
-  padding-bottom: {{ section.settings.padding_bottom }}px;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 /* Text */
 .timeline-content {
   text-align: center;
@@ -160,7 +151,7 @@
 {% endstyle %}
 
 <section class="timeline-section-{{ section.id }} color-{{ section.settings.color_scheme }}">
-  <div class="wrapper">
+  <div class="">
 
     <!-- TEXT -->
     <div class="timeline-content ">
