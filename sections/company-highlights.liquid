@@ -83,7 +83,7 @@ text-align: center;
 .comp_heighlight_heading {
     max-width: max-content;
     margin: auto auto 30px;
-    background: #F4F4F4;
+    /* background: #F4F4F4; */
     border-radius: 20px;
     padding: 18px 28px;
     display: flex;
@@ -114,7 +114,7 @@ text-align: center;
  
     <div class="section-header custom_top_header_section">
     <div>
-        <div class="comp_heighlight_heading">
+        <div class="comp_heighlight_heading color-{{ section.settings.heading_block_color_scheme }}">
            {% if section.settings.heading_img !=blank %} <img src="{{ section.settings.heading_img | img_url  : 'master' }}"> {% endif %}
             <span>
                 {{ section.settings.company_heading }}
@@ -181,6 +181,11 @@ text-align: center;
       "id": "company_heading",
       "label": "Heading",
       "default": "Our Journey & Presence"
+    },
+    {
+     "type":"color_scheme",
+     "id": "heading_block_color_scheme",
+     "label": "Heading Color Scheme"
     },
     {
       "type": "richtext",
