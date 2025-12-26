@@ -186,12 +186,14 @@
 
     <!-- IMAGE BANNER -->
     {% if section.settings.image != blank %}
-      <div class="timeline-banner page-width">
+    <div class="page-width">
+      <div class="timeline-banner ">
         {{ section.settings.image | image_url: width: 2000 | image_tag }}
         <div class="timeline-banner__overlay">
           <h2>{{ section.settings.banner_text }}</h2>
         </div>
       </div>
+    </div>
     {% endif %}
 
   </div>
