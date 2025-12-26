@@ -79,7 +79,6 @@
 
 .timeline-banner__overlay {
   position: absolute;
-  inset: 0;
   background: linear-gradient(
     rgba(0,0,0,0.45),
     rgba(0,0,0,0.45)
@@ -174,7 +173,7 @@
     </div>
 
     <!-- TIMELINE -->
-    <div class="timeline ">
+    <div class="timeline page-width">
         {% for block in section.blocks %}
             <div class="custom_timeline_block">
             <div class="timeline-item color-{{ block.settings.block_color_scheme }}">
@@ -187,7 +186,7 @@
 
     <!-- IMAGE BANNER -->
     {% if section.settings.image != blank %}
-      <div class="timeline-banner">
+      <div class="timeline-banner page-width">
         {{ section.settings.image | image_url: width: 2000 | image_tag }}
         <div class="timeline-banner__overlay">
           <h2>{{ section.settings.banner_text }}</h2>
