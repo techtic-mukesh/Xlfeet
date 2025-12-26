@@ -147,6 +147,7 @@
           "settings": {
             "year": "2008",
             "description": "Started xlfeet in back room of his house",
+            "extra_content_block": "",
             "block_color_scheme": ""
           }
         },
@@ -155,6 +156,7 @@
           "settings": {
             "year": "2010",
             "description": "provided the shoe store experience from xlfeetmobile;",
+            "extra_content_block": "",
             "block_color_scheme": ""
           }
         },
@@ -163,6 +165,7 @@
           "settings": {
             "year": "2012",
             "description": "Added Florsheim Brand after receiving $1K microgrant",
+            "extra_content_block": "",
             "block_color_scheme": ""
           }
         },
@@ -225,7 +228,8 @@
           "type": "pill",
           "settings": {
             "year": "2012",
-            "description": "Moved into first physical storeBecame full-time owner at xlfeet store",
+            "description": "",
+            "extra_content_block": "<p>Moved into first physical storeBecame full-time owner at xlfeet store</p>",
             "block_color_scheme": ""
           }
         },
