@@ -232,34 +232,22 @@
         "card_gQmrTB": {
           "type": "card",
           "settings": {
-            "title": "Card title"
+            "image": "shopify://shop_images/Rectangle_40201_4.png",
+            "title": "Inventory room and back office in first store location"
           }
         },
         "card_qLerzL": {
           "type": "card",
           "settings": {
-            "title": "Card title"
-          }
-        },
-        "card_8YaYmh": {
-          "type": "card",
-          "settings": {
-            "title": "Card title"
-          }
-        },
-        "card_kfrbw4": {
-          "type": "card",
-          "settings": {
-            "title": "Card title"
+            "image": "shopify://shop_images/Rectangle_40201_5.png",
+            "title": "Showroom of first store location"
           }
         }
       },
       "block_order": [
         "pill_CW36nW",
         "card_gQmrTB",
-        "card_qLerzL",
-        "card_8YaYmh",
-        "card_kfrbw4"
+        "card_qLerzL"
       ],
       "name": "Company Highlights",
       "settings": {
@@ -267,10 +255,10 @@
         "heading_img": "shopify://shop_images/image_685.png",
         "company_heading": "PHYSICAL STOREFRONT experience",
         "heading_block_color_scheme": "scheme-1",
-        "description": "",
-        "custom_page_width": 1200,
+        "description": "<p>Shortly after this, Adrian quit his job to work full time at XLFeet.com and within a year the company outgrew its first store. XLFeet.com then moved into a neighboring unit in the same building which upgraded the company’s space from 500 to 4,700 square feet.</p>",
+        "custom_page_width": 1104,
         "show_pills": true,
-        "grid_columns": 4,
+        "grid_columns": 2,
         "padding_top": 36,
         "padding_bottom": 36
       }
