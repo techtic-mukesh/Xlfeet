@@ -170,32 +170,28 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Rectangle_40201_abecaed3-d69d-450e-9614-a439aede96f1.png",
-            "title": "Adrian’s Home where XLFeet began out of a spare bedroom.",
-            "text": ""
+            "title": "Adrian’s Home where XLFeet began out of a spare bedroom."
           }
         },
         "card_8RNFkq": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Rectangle_40201_1_920eb514-ed93-4f2c-b7d1-56284d9240b2.png",
-            "title": "Photo light box for manually creating product images for the website.",
-            "text": ""
+            "title": "Photo light box for manually creating product images for the website."
           }
         },
         "card_zizrPk": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Rectangle_40201_2_6c87e082-49fe-44b3-be13-31a841e61af6.png",
-            "title": "The van Adrian believed would deliver his store to the customer’s door.",
-            "text": ""
+            "title": "The van Adrian believed would deliver his store to the customer’s door."
           }
         },
         "card_pA8wqM": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Rectangle_40201_3_40047c86-e999-4e52-879c-3ffeb2461760.png",
-            "title": "Adrian’s tablet for accepting mobile payments.",
-            "text": ""
+            "title": "Adrian’s tablet for accepting mobile payments."
           }
         }
       },
@@ -213,6 +209,7 @@
         "color_scheme": "scheme-52cf759c-7f35-4129-9114-c713b9992458",
         "heading_img": "shopify://shop_images/heighlight_Icon_6201a5a9-1b65-498f-bbec-423625a4a3d3.png",
         "company_heading": "Our Journey & Presence",
+        "heading_block_color_scheme": "scheme-9e4dd7b5-9109-4fc6-ae59-802d1e0d7171",
         "description": "<p>As the founder/owner of XLFeet.com, Adrian knew footwear manufacturers were making extra large sizes yet few, if any, stores were stocking them. He did further research and asked around to find a way to connect with those manufacturers. Later at a shoe show in Las Vegas (with no knowledge about shoes, the lingo, or how to run a shoe store) he spoke to over 500 shoe manufacturers. Only one of those 500+ vendors let Adrian sell their shoes. The next year he went back and got three more brands.<br/><br/>He started the company out of his house and thought he would sell online only without a physical store. Adrian was still working full time selling cell phones in a retail store and had started XLFeet.com on the side.<br/><br/>Early in 2010 as sales began to trickle in, he bought a cargo van and put XLFeet.com decals on it thinking he might deliver the shoe store experience to his customers in the Minneapolis / St Paul Twin City area.<br/><br/>In 2012, XLFeet.com moved into its first physical store due to some shoe brands requiring the company to have a brick and mortar location. That year Adrian’s resources became dangerously low and he was referred to an organization called Microgrants by the Metropolitan Economic Development Association (MEDA.net) where he received a microgrant of just $1,000. This enabled him to pay for an opening order to add Florsheim as a brand to XLFeet.com.</p>",
         "custom_page_width": 1104,
         "show_pills": true,
