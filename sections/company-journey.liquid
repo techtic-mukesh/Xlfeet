@@ -1,0 +1,206 @@
+{% style %}
+.timeline-section-{{ section.id }} {
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+}
+
+.timeline-section-{{ section.id }} .wrapper {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Text */
+.timeline-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.timeline-item {
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  min-width: 130px;
+  text-align: center;
+  background: rgb(var(--color-background));
+}
+
+.timeline-item strong {
+  display: block;
+  font-size: 16px;
+}
+
+.timeline-item span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Banner */
+.timeline-banner {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.timeline-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.timeline-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.45)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.timeline-banner__overlay h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 749px) {
+  .timeline-banner__overlay h2 {
+    font-size: 18px;
+  }
+}
+{% endstyle %}
+
+<section class="timeline-section-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="wrapper">
+
+    <!-- TEXT -->
+    <div class="timeline-content">
+      {{ section.settings.text }}
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+      {% for block in section.blocks %}
+        <div class="timeline-item">
+          <strong>{{ block.settings.year }}</strong>
+          <span>{{ block.settings.description }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- IMAGE BANNER -->
+    {% if section.settings.image != blank %}
+      <div class="timeline-banner">
+        {{ section.settings.image | image_url: width: 2000 | image_tag }}
+        <div class="timeline-banner__overlay">
+          <h2>{{ section.settings.banner_text }}</h2>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Story Timeline",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Top text",
+      "default": "<p>Add your brand story or description here.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner overlay text",
+      "default": "Expanding To Even Better Serve The Big And Tall Community"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline",
+      "name": "Timeline item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "1990"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Age 7, Size 7"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Our Story Timeline",
+      "blocks": [
+        { "type": "timeline" },
+        { "type": "timeline" },
+        { "type": "timeline" }
+      ]
+    }
+  ]
+}
+{% endschema %}
