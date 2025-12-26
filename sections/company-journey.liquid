@@ -86,6 +86,75 @@
   font-size: 24px;
   font-weight: 600;
 }
+/* Custom Timeline Layout */
+.timeline {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+
+.custom_timeline_block {
+  position: relative;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+/* Connector line */
+.custom_timeline_block:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 22px; /* aligns with pill center */
+  right: -50%;
+  width: 100%;
+  height: 1px;
+  background: rgba(var(--color-foreground), 0.3);
+  z-index: 0;
+}
+
+/* Pill */
+.timeline-item {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(var(--color-foreground), 0.4);
+  border-radius: 999px;
+  padding: 0.6rem 1.75rem;
+  background: rgb(var(--color-background));
+  min-width: 130px;
+}
+
+.timeline-item strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Description */
+.custom_timeline_block span {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 12px;
+  opacity: 0.7;
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .timeline {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .custom_timeline_block {
+    padding: 0;
+  }
+
+  .custom_timeline_block::after {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 749px) {
   .timeline-banner__overlay h2 {
@@ -104,17 +173,15 @@
 
     <!-- TIMELINE -->
     <div class="timeline">
-      {% for block in section.blocks %}
-        <div class="custom_timeline_block">
+        {% for block in section.blocks %}
+            <div class="custom_timeline_block">
             <div class="timeline-item">
-            <strong>{{ block.settings.year }}</strong>
+                <strong>{{ block.settings.year }}</strong>
             </div>
-            <div>
             <span>{{ block.settings.description }}</span>
             </div>
+        {% endfor %}
         </div>
-      {% endfor %}
-    </div>
 
     <!-- IMAGE BANNER -->
     {% if section.settings.image != blank %}
