@@ -65,6 +65,11 @@
   display: block;
   height: 100%;
 }
+{% for block in section.blocks %}
+    .image-overlay-grid__small-text , .image-overlay-grid__heading{
+      color:{{ block.settings.text_color }};
+    }
+{% endfor %}
 {% endstyle %}
 
 <section
@@ -172,6 +177,12 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Color",
+          "default":"#fff"
         }
       ]
     }
