@@ -106,8 +106,8 @@
 
 <section class="bottom-feature-grid-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
-
-    <div class="section-header">
+ 
+    <div class="section-header custom_top_header_section">
     <div>
         <div class="comp_heighlight_heading">
            {% if section.settings.heading_img !=blank %} <img src="{{ section.settings.heading_img | img_url  : 'master' }}"> {% endif %}
@@ -185,6 +185,16 @@
       "id": "description",
       "label": "Description",
       "default": "Discover our story, stores, team, and commitment to quality."
+    },
+    {  
+        "type": "range",
+        "id": "custom_page_width",
+        "min": 1000,
+        "max": 1400,
+        "step": 4,
+        "default": 1200,
+        "unit": "px",
+        "label": "Content Page Width"
     },
     {
       "type": "checkbox",
