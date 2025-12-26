@@ -145,19 +145,25 @@
         "pill_NqyxfH": {
           "type": "pill",
           "settings": {
-            "text": "2008"
+            "year": "2008",
+            "description": "Started xlfeet in back room of his house",
+            "block_color_scheme": ""
           }
         },
         "pill_q4zqbh": {
           "type": "pill",
           "settings": {
-            "text": "2010"
+            "year": "2010",
+            "description": "provided the shoe store experience from xlfeetmobile;",
+            "block_color_scheme": ""
           }
         },
         "pill_zDW77G": {
           "type": "pill",
           "settings": {
-            "text": "2012"
+            "year": "2012",
+            "description": "Added Florsheim Brand after receiving $1K microgrant",
+            "block_color_scheme": ""
           }
         },
         "card_eJLGp8": {
