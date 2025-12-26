@@ -266,6 +266,78 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "company_highlights_w8UyPb": {
+      "type": "company-highlights",
+      "blocks": {
+        "pill_4Ywpxa": {
+          "type": "pill",
+          "settings": {
+            "year": "2013",
+            "description": "Expanded store space by 9x",
+            "extra_content_block": "",
+            "block_color_scheme": ""
+          }
+        },
+        "pill_8CaqV9": {
+          "type": "pill",
+          "settings": {
+            "year": "2015",
+            "description": "His first daughter was born",
+            "extra_content_block": "",
+            "block_color_scheme": ""
+          }
+        },
+        "card_U6fbtw": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_40201_6.png",
+            "title": "Ribbon Cutting at latest location"
+          }
+        },
+        "card_e6VM9C": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_40201_7.png",
+            "title": "Showroom oflatest Store"
+          }
+        },
+        "card_WN3CKC": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_40201_8.png",
+            "title": "Showroom oflatest Store"
+          }
+        },
+        "card_EGdApX": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_40201_9.png",
+            "title": "Part of Warehouse in latest location"
+          }
+        }
+      },
+      "block_order": [
+        "pill_4Ywpxa",
+        "pill_8CaqV9",
+        "card_U6fbtw",
+        "card_e6VM9C",
+        "card_WN3CKC",
+        "card_EGdApX"
+      ],
+      "name": "Company Highlights",
+      "settings": {
+        "color_scheme": "scheme-52cf759c-7f35-4129-9114-c713b9992458",
+        "heading_img": "shopify://shop_images/image_686.png",
+        "company_heading": "live & real customer support",
+        "heading_block_color_scheme": "scheme-9e4dd7b5-9109-4fc6-ae59-802d1e0d7171",
+        "description": "<p>In 2017 XLFeet.com pierced $1M in annual sales and had grown to an offering of more than 50 brands of footwear. This enabled Adrian to give back to Microgrants with a donation of more than twice the amount of the grant he received a few years earlier. In 2019 the company migrated to a new website powered by Magento. This was a massive project which brought a wide array of extra functionality and benefits to XLFeet’s customers.</p>",
+        "custom_page_width": 1104,
+        "show_pills": true,
+        "grid_columns": 4,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -275,6 +347,7 @@
     "image_feature_grid_Rc9NHK",
     "company_journey_Qhxntg",
     "company_highlights_zjbCWe",
-    "company_highlights_AzbEGh"
+    "company_highlights_AzbEGh",
+    "company_highlights_w8UyPb"
   ]
 }
