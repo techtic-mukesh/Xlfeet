@@ -66,7 +66,7 @@
   height: 100%;
 }
 {% for block in section.blocks %}
-    .image-overlay-grid__small-text , .image-overlay-grid__heading h2{
+    .block-{{ block.id }} .image-overlay-grid__small-text , .block-{{ block.id }} .image-overlay-grid__heading h2{
       color:{{ block.settings.text_color }};
     }
 {% endfor %}
@@ -82,7 +82,7 @@
   <div class="image-overlay-grid__wrapper">
     <div class="image-overlay-grid__grid">
       {% for block in section.blocks %}
-        <div class="image-overlay-grid__item" {{ block.shopify_attributes }}>
+        <div class="block-{{ block.id }} image-overlay-grid__item" {{ block.shopify_attributes }}>
           {% if block.settings.link != blank %}
             <a href="{{ block.settings.link }}">
           {% endif %}
