@@ -39,9 +39,10 @@
 
 .bottom-feature-grid-{{ section.id }} .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
   gap: 1.5rem;
 }
+
 
 .bottom-feature-grid-{{ section.id }} .card {
   background: rgb(var(--color-background));
