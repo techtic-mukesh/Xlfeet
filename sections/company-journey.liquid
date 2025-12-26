@@ -172,16 +172,16 @@
     </div>
 
     <!-- TIMELINE -->
-    <div class="timeline">
+    <div class="timeline ">
         {% for block in section.blocks %}
             <div class="custom_timeline_block">
-            <div class="timeline-item">
+            <div class="timeline-item color-{{ block.settings.block_color_scheme }}">
                 <strong>{{ block.settings.year }}</strong>
             </div>
             <span>{{ block.settings.description }}</span>
             </div>
         {% endfor %}
-        </div>
+    </div>
 
     <!-- IMAGE BANNER -->
     {% if section.settings.image != blank %}
@@ -258,6 +258,11 @@
           "id": "description",
           "label": "Description",
           "default": "Age 7, Size 7"
+        },
+        {
+            "type": "color_scheme",
+            "id": "block_color_scheme",
+            "label": "Block Color Scheme"
         }
       ]
     }
