@@ -113,7 +113,7 @@
       {% if section.settings.show_pills %}
         <div class="pill-buttons">
           {% for block in section.blocks %}
-          <div class="custom_timeline_block">
+          <div class="block-{{block.id }} custom_timeline_block">
             <div class="timeline-item color-{{ block.settings.block_color_scheme }}">
                 <h2>{{ block.settings.year }}</h2>
             </div>
