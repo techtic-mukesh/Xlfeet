@@ -76,6 +76,14 @@
   <div class="page-width">
 
     <div class="section-header">
+    <div>
+        <div class="comp_heighlight_heading">
+            <img src="{{ section.settings.heading_img | img_url  : 'master' }}">
+            <span>
+                {{ section.settings.company_heading }}
+            </span>
+        </div>
+    </div>
       {% if section.settings.show_pills %}
         <div class="pill-buttons">
           {% for block in section.blocks %}
@@ -125,8 +133,13 @@
       "default": "background-1"
     },
     {
+      "type": "image_picker",
+      "id": "heading_img",
+      "label": "Heading Image"
+    },
+    {
       "type": "text",
-      "id": "heading",
+      "id": "company_heading",
       "label": "Heading",
       "default": "Our Journey & Presence"
     },
