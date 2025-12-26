@@ -107,7 +107,9 @@
       {% for block in section.blocks %}
         <div class="timeline-item">
           <strong>{{ block.settings.year }}</strong>
-          <span>{{ block.settings.description }}</span>
+        </div>
+        <div>
+         <span>{{ block.settings.description }}</span>
         </div>
       {% endfor %}
     </div>
