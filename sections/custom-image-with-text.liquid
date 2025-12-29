@@ -5,7 +5,7 @@
 
 
 <section class="image-text-cta color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-  <div class="page-width">
+  <div class="custom-page-width">
     <div class="image-text-cta__grid image-text-cta__grid--{{ section.settings.image_position }}">
       
       {% if section.settings.image != blank %}
@@ -56,7 +56,12 @@
   padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
   padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
 }
-
+.custom_top_header_section{
+  max-width:{{ section.settings.custom_page_width }}px;
+  width:100%;
+  margin:auto;
+  padding:0 20px;
+}
 @media screen and (min-width: 750px) {
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top }}px;
@@ -118,6 +123,16 @@
 {
   "name": "Custom Image with text",
   "settings": [
+    {  
+        "type": "range",
+        "id": "custom_page_width",
+        "min": 1000,
+        "max": 1400,
+        "step": 4,
+        "default": 1200,
+        "unit": "px",
+        "label": "Content Page Width"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
