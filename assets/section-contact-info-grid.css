@@ -9,6 +9,7 @@
 .contact-info-grid__content p a{
     color: currentColor;
     text-decoration: none;
+    cursor: pointer;
 }
 @media screen and (min-width: 750px) {
   .contact-info-grid__wrapper {
