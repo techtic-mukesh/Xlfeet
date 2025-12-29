@@ -113,18 +113,18 @@ text-align: center;
             {% if block.settings.first_image_block  != blank or block.settings.first_image_text_block != blank or block.settings.second_image_block  != blank or block.settings.second_image_text_block != blank  %}
             <div class="feature_in_press_blocks_right_grid">
                 <div class="feature_in_press_blocks_right">
-                    <div class="">
+                    <div class="feature_in_press_blocks_right_img">
                     {% if block.settings.first_image_block  != blank %} <img src="{{ block.settings.first_image_block  | img_url : 'master' }}"> {% endif %}
                     </div> 
-                    <div>
+                    <div class="feature_in_press_blocks_right_content">
                         {{ block.settings.first_image_text_block }}
                     </div>
                 </div>
                 <div class="feature_in_press_blocks_right">
-                    <div class="">
+                    <div class="feature_in_press_blocks_right_img">
                     {% if block.settings.second_image_block  != blank %} <img src="{{ block.settings.second_image_block  | img_url : 'master' }}"> {% endif %}
                     </div> 
-                    <div>
+                    <div class="feature_in_press_blocks_right_content">
                         {{ block.settings.second_image_text_block }}
                     </div>
                 </div>
