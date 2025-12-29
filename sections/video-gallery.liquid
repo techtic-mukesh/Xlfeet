@@ -31,7 +31,7 @@
   endif
 -%}
 
-<section id="video-metaobject-{{ section.id }}" class="section">
+<section id="video-metaobject-{{ section.id }}" class="section color-{{ section.settings.color_scheme }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
@@ -237,6 +237,12 @@
 {
   "name": "Video gallery",
   "settings": [
+     {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
     { "type": "text", "id": "heading", "label": "Heading" },
     {
       "type": "range",
