@@ -453,6 +453,7 @@
         "icon_color": "#000000",
         "title_color": "#000000",
         "text_color": "#7d7d7d",
+        "divider_color": "#e8e8e8",
         "desktop_columns": 3,
         "desktop_gap": 20,
         "desktop_icon_size": 40,
