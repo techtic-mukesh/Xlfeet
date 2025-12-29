@@ -32,10 +32,62 @@
         "font_size_min": 26,
         "font_size_max": 48
       }
+    },
+    "contact_info_7M4rTP": {
+      "type": "contact-info",
+      "blocks": {
+        "info_Dj4wej": {
+          "type": "info",
+          "settings": {
+            "icon": "shopify://shop_images/call.png",
+            "heading": "CONTACT US",
+            "phone_text": "(651) 797-6000",
+            "phone_link": "+16517976000",
+            "email": "customercare@xlfleet.com",
+            "extra_text": ""
+          }
+        },
+        "info_akt3DA": {
+          "type": "info",
+          "settings": {
+            "icon": "shopify://shop_images/call.png",
+            "heading": "Address",
+            "phone_text": "",
+            "phone_link": "",
+            "email": "",
+            "extra_text": "<p>XLFEET INC. <br/>242 Fillmore Ave East, St Paul, MN 55107</p>"
+          }
+        },
+        "info_ecEGyX": {
+          "type": "info",
+          "settings": {
+            "icon": "shopify://shop_images/lets-icons_time-light.png",
+            "heading": "Hours",
+            "phone_text": "",
+            "phone_link": "",
+            "email": "",
+            "extra_text": "<p><strong>Physical Store:</strong><br/>12:00-6:00 Mon-Fri, 12:00-5:00 Sat - Central Time<br/><br/><strong>Call Center:</strong><br/>11:00-6:00 Mon-Fri, 12:00-5:00 Sat - Central Time</p>"
+          }
+        }
+      },
+      "block_order": [
+        "info_Dj4wej",
+        "info_akt3DA",
+        "info_ecEGyX"
+      ],
+      "name": "Contact info",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60
+      }
     }
   },
   "order": [
     "main",
-    "page_banner_XmUKPN"
+    "page_banner_XmUKPN",
+    "contact_info_7M4rTP"
   ]
 }
