@@ -99,6 +99,13 @@ text-align: center;
     gap: 20px;
     padding: 20px;
  }
+ {% for block in section.blocks %}
+    .block-grid-{{ block.id }} .feature_in_press_blocks_right_img {
+        max-width: 180px;
+        width: 100%;
+        min-width:180px;
+    }
+ {% endfor %}
 }
 {% endstyle %}
 
