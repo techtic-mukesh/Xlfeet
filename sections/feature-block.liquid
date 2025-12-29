@@ -6,6 +6,7 @@
 
   .feature-blocks-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
+    border-top:1px solid  {{ section.settings.divider_color }};
   }
   .custom_page_width{
     text-align: center;
@@ -20,8 +21,6 @@
     gap: {{ section.settings.mobile_gap }}px;
     max-width: 100%;
     margin: 0 auto;
-    padding-top: 21px;
-    border-top:1px solid  {{ section.settings.divider_color }};
     /* padding: 0 15px; */
   }
 
