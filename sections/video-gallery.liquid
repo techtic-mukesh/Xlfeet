@@ -167,6 +167,9 @@
 
     #video-metaobject-{{ section.id }} .card--media { border: 1px solid rgba(0,0,0,.06); border-radius: 8px; overflow: hidden; }
     #video-metaobject-{{ section.id }} .card--media .media { transition: transform .4s ease; }
+    #video-metaobject-{{ section.id }} .card--media img{
+        position:relative;
+    }
     #video-metaobject-{{ section.id }} .card--media:hover .media { transform: scale(1.04); }
     #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block; }
     #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
