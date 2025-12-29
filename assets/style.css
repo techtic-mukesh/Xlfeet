@@ -132,4 +132,8 @@
     gap: 10px;
     padding: 18px 20px;
 }
+.comp_heighlight_heading img {
+    max-width: 30px;
+    width: 100%;
+}
 }
