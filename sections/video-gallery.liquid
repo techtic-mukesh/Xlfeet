@@ -66,6 +66,36 @@
             {%- endif -%}
           {%- endfor -%}
 
+          {%- comment -%} Normalize video URL to Fancybox-friendly link {%- endcomment -%}
+          {%- assign url = e.video_url | default: e.video_url.value | default: '' | strip -%}
+          {%- assign video_type = 'other' -%}
+          {%- assign video_href = url -%}
+
+          {%- if url contains 'youtube.com/watch' or url contains 'youtu.be/' or url contains '/shorts/' or url.size == 11 -%}
+            {%- assign id = '' -%}
+            {%- if url contains 'youtube.com/watch' -%}
+              {%- assign id = url | split: 'v=' | last | split: '&' | first -%}
+            {%- elsif url contains 'youtu.be/' -%}
+              {%- assign id = url | split: 'youtu.be/' | last | split: '?' | first -%}
+            {%- elsif url contains '/shorts/' -%}
+              {%- assign id = url | split: '/shorts/' | last | split: '?' | first -%}
+            {%- elsif url != '' and url.size == 11 -%}
+              {%- assign id = url -%}
+            {%- endif -%}
+            {%- if id != '' -%}
+              {%- assign video_href = 'https://www.youtube.com/embed/' | append: id | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1' -%}
+              {%- assign video_type = 'iframe' -%}
+            {%- endif -%}
+          {%- elsif url contains 'vimeo.com/' -%}
+            {%- assign vimeo_id = url | split: 'vimeo.com/' | last | split: '/' | last | split: '?' | first -%}
+            {%- if vimeo_id != '' -%}
+              {%- assign video_href = 'https://player.vimeo.com/video/' | append: vimeo_id | append: '?autoplay=1&byline=0&portrait=0' -%}
+              {%- assign video_type = 'iframe' -%}
+            {%- endif -%}
+          {%- elsif url contains '.mp4' -%}
+            {%- assign video_type = 'html5video' -%}
+          {%- endif -%}
+
           <article class="grid__item video-card" data-tags="{{ tag_handles | strip }}">
             <div class="card-wrapper underline-links-hover">
               <div class="card card--media card--text">
@@ -82,7 +112,8 @@
                   <a
                     class="card__link full-unstyled-link video-card__link"
                     data-fancybox="video-{{ section.id }}"
-                    href="{{ e.video_url }}"
+                    {% if video_type != 'other' %}data-type="{{ video_type }}"{% endif %}
+                    href="{{ video_href }}"
                     data-caption="{{ e.title | escape }}"
                     aria-label="{{ e.title | escape }}"
                   ></a>
@@ -111,6 +142,7 @@
     #video-metaobject-{{ section.id }} .video-filter-buttons .is-active { background: rgb(var(--color-foreground)); color: rgb(var(--color-background)); }
     #video-metaobject-{{ section.id }} .video-card[hidden] { display: none !important; }
 
+    #video-metaobject-{{ section.id }} .card--media { border: 1px solid rgba(0,0,0,.06); border-radius: 8px; overflow: hidden; }
     #video-metaobject-{{ section.id }} .card--media .media { transition: transform .4s ease; }
     #video-metaobject-{{ section.id }} .card--media:hover .media { transform: scale(1.04); }
     #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; }
@@ -146,7 +178,6 @@
         btn.addEventListener('click', () => { setActive(btn); applyFilter(btn.dataset.filter); });
       });
 
-      // Bind Fancybox once the library is loaded
       function initFancybox() {
         if (!window.Fancybox) { setTimeout(initFancybox, 50); return; }
         Fancybox.bind('[data-fancybox="video-{{ section.id }}"]', {
@@ -154,11 +185,7 @@
           dragToClose: true,
           Thumbs: false,
           Toolbar: { display: ['close'] },
-          Carousel: { transition: 'slide', friction: 0.88 },
-          on: {
-            init: (f) => { document.documentElement.classList.add('fancybox-open'); },
-            destroy: (f) => { document.documentElement.classList.remove('fancybox-open'); }
-          }
+          Carousel: { transition: 'slide', friction: 0.88 }
         });
       }
       initFancybox();
