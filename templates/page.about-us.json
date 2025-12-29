@@ -342,6 +342,16 @@
     "featured_in_the_press_ptKPLL": {
       "type": "featured-in-the-press",
       "blocks": {
+        "image_with_text_MgrtcJ": {
+          "type": "image_with_text",
+          "settings": {
+            "left_side_img": "shopify://shop_images/image_687.png",
+            "first_image_block": "shopify://shop_images/Rectangle_40226.png",
+            "first_image_text_block": "News article marking the point when XLfeet pierced $1 Million in annual sales Jan 2018.",
+            "second_image_block": "shopify://shop_images/Rectangle_40226_2.png",
+            "second_image_text_block": "Adrian was Keynote Speaker at a Microgrants event where he donated $2,400 (more than doubling the donation from the previous year) to pay it forward for future grantees like himself. He was formerly a recipient of a $1,000 Microgrant in 2011."
+          }
+        },
         "pill_zPfbBK": {
           "type": "pill",
           "settings": {
@@ -362,6 +372,7 @@
         }
       },
       "block_order": [
+        "image_with_text_MgrtcJ",
         "pill_zPfbBK",
         "pill_jMBGdt"
       ],
