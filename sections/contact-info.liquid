@@ -1,6 +1,6 @@
 {% comment %}
   Section: Contact Info Grid (Dawn compatible)
-  CMS: Color scheme, padding, blocks with icon, title, text
+  CMS: Color scheme, padding, blocks with icon, title, phone & email links
 {% endcomment %}
 
 {{ 'section-contact-info-grid.css' | asset_url | stylesheet_tag }}
@@ -10,6 +10,7 @@
     <div class="contact-info-grid__wrapper">
       {% for block in section.blocks %}
         <div class="contact-info-grid__item" {{ block.shopify_attributes }}>
+
           {% if block.settings.icon != blank %}
             <div class="contact-info-grid__icon">
               {{ block.settings.icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
@@ -20,11 +21,23 @@
             <h3 class="contact-info-grid__heading">{{ block.settings.heading }}</h3>
           {% endif %}
 
-          {% if block.settings.content != blank %}
-            <div class="contact-info-grid__content rte">
-              {{ block.settings.content }}
-            </div>
-          {% endif %}
+          <div class="contact-info-grid__content">
+            {% if block.settings.phone_text != blank %}
+              <p>
+                <a href="tel:{{ block.settings.phone_link }}">{{ block.settings.phone_text }}</a>
+              </p>
+            {% endif %}
+
+            {% if block.settings.email != blank %}
+              <p>
+                <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+              </p>
+            {% endif %}
+
+            {% if block.settings.extra_text != blank %}
+              <div class="rte">{{ block.settings.extra_text }}</div>
+            {% endif %}
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -82,7 +95,7 @@
       "id": "padding_top_desktop",
       "min": 0,
       "max": 160,
-      "step":4,
+      "step": 4,
       "unit": "px",
       "label": "Padding top (desktop)",
       "default": 60
@@ -115,10 +128,27 @@
           "default": "CONTACT US"
         },
         {
+          "type": "text",
+          "id": "phone_text",
+          "label": "Phone (display)",
+          "default": "(651) 797-6000"
+        },
+        {
+          "type": "text",
+          "id": "phone_link",
+          "label": "Phone link (digits only)",
+          "default": "+16517976000"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email address",
+          "default": "customercare@xlfleet.com"
+        },
+        {
           "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>(555) 123-4567<br>hello@example.com</p>"
+          "id": "extra_text",
+          "label": "Extra text (optional)"
         }
       ]
     }
