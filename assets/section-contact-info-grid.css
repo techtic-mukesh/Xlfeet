@@ -57,7 +57,11 @@
     padding: 20px 10px;
 }
 .contact-info-grid__content p{
+    font-size: 12px;
+    line-height: 20px;
+}
+.contact-info-grid__heading{
     font-size: 14px;
-    line-height: 22px;
+    line-height: 18px;
 }
 }
