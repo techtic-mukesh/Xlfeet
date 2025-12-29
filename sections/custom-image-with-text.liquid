@@ -33,10 +33,17 @@
             {% endif %}
 
             {% if section.settings.button_label != blank %}
-            <a href="{{ section.settings.button_link }}" class="button">
-                {{ section.settings.button_label }}
-            </a>
-            {% endif %}
+                <a
+                {% if section.settings.button_link == blank %}
+                role="link" aria-disabled="true"
+                {% else %}
+                href="{{ section.settings.button_link }}"
+                {% endif %}
+                class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                >
+                {{ section.settings.button_label | escape }}
+                </a>
+                {% endif %}
         </div>
       </div>
 
@@ -171,6 +178,12 @@
       "type": "url",
       "id": "button_link",
       "label": "Button link"
+    },
+    {
+        "type": "checkbox",
+        "id": "button_style_secondary",
+        "label": "Use outline button",
+        "default": true
     },
     {
       "type": "range",
