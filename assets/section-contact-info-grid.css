@@ -1,0 +1,33 @@
+
+/* CSS (add to assets/section-contact-info-grid.css) */
+.contact-info-grid__wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact-info-grid__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}
+
+.contact-info-grid__item {
+  text-align: center;
+}
+
+.contact-info-grid__icon {
+  margin-bottom: 1rem;
+}
+
+.contact-info-grid__heading {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-info-grid__content p {
+  margin: 0.25rem 0;
+}
