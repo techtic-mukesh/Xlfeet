@@ -107,6 +107,11 @@ text-align: center;
     }
  {% endfor %}
 }
+@media screen and (max-width: 749px) {
+.feature_in_press_blocks{
+    flex-direction: column;
+}
+}
 {% endstyle %}
 
 <section class="bottom-feature-grid-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
