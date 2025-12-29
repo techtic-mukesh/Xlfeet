@@ -402,7 +402,8 @@
         "heading_size": "h2",
         "text": "",
         "button_label": "Shop now",
-        "button_link": "",
+        "button_link": "shopify://collections",
+        "button_style_secondary": true,
         "padding_top": 60,
         "padding_bottom": 60
       }
