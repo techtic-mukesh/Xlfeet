@@ -383,7 +383,6 @@
         "company_heading": "accurate fitting & FEWER RETURNS",
         "heading_block_color_scheme": "",
         "description": "<p>If you have large or wide feet, chances are you have already invested years of your life sifting through all kinds of cool boots and shoes on numerous websites and at shoe stores, only to learn the popular styles displayed are not offered in Big and Tall sizes or Wide widths. XLFeet.com offers the most cutting-edge shoes, boots, slippers, socks and insoles in the size and width you are looking for. They are always working to carry as many of the oddball sizes which span 7-13, 14, 15, 16, 17, 18, 19, 20, 21, and extra-wide to EEEEEE as possible.<br/><br/></p>",
-        "custom_page_width": 1320,
         "show_pills": true,
         "grid_columns": 4,
         "padding_top": 36,
@@ -406,7 +405,7 @@
         "button_link": "shopify://collections",
         "button_style_secondary": true,
         "padding_top": 72,
-        "padding_bottom": 36
+        "padding_bottom": 72
       }
     },
     "feature_block_bJUTF7": {
