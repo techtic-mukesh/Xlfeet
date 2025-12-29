@@ -58,14 +58,16 @@ text-align: center;
     margin-bottom: 20px;
     align-items: center;
 }
-.feature_in_press_blocks_right_img {
-    max-width: 263px;
-    width: 100%;
-}
-.feature_in_press_blocks_right_img img{
-    max-width:100%;
-    width:100%;
-}
+{% for block in section.blocks %}
+    .block-grid-{{ block.id }} .feature_in_press_blocks_right_img {
+        max-width: 263px;
+        width: 100%;
+    }
+    block-grid-{{ block.id }} .feature_in_press_blocks_right_img img{
+        max-width:100%;
+        width:100%;
+    }
+{% endfor %}
 .comp_heighlight_heading {
     max-width: max-content;
     margin: auto auto 30px;
@@ -127,7 +129,7 @@ text-align: center;
                 </div>
             {% endif %}
             {% if block.settings.first_image_block  != blank or block.settings.first_image_text_block != blank or block.settings.second_image_block  != blank or block.settings.second_image_text_block != blank  %}
-            <div class="feature_in_press_blocks_right_grid">
+            <div class="block-grid-{{ block.id }} feature_in_press_blocks_right_grid">
                 <div class="feature_in_press_blocks_right">
                     <div class="feature_in_press_blocks_right_img">
                     {% if block.settings.first_image_block  != blank %} <img src="{{ block.settings.first_image_block  | img_url : 'master' }}"> {% endif %}
