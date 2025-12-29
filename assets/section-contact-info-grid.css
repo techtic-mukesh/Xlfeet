@@ -19,7 +19,9 @@
 }
 
 .contact-info-grid__item {
-  text-align: center;
+    text-align: center;
+    background: #F4F4F480;
+    padding: 30px;
 }
 
 .contact-info-grid__icon {
