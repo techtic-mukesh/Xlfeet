@@ -338,6 +338,46 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "featured_in_the_press_ptKPLL": {
+      "type": "featured-in-the-press",
+      "blocks": {
+        "pill_zPfbBK": {
+          "type": "pill",
+          "settings": {
+            "year": "2017",
+            "description": "Hit our first $1M sales and carried 50+ brands",
+            "extra_content_block": "",
+            "block_color_scheme": ""
+          }
+        },
+        "pill_jMBGdt": {
+          "type": "pill",
+          "settings": {
+            "year": "2019",
+            "description": "Improved our web store to better serve our customers",
+            "extra_content_block": "",
+            "block_color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "pill_zPfbBK",
+        "pill_jMBGdt"
+      ],
+      "name": "Featured In the Press",
+      "settings": {
+        "color_scheme": "scheme-9e4dd7b5-9109-4fc6-ae59-802d1e0d7171",
+        "heading_img": "shopify://shop_images/FEWER_RETURNS.png",
+        "company_heading": "accurate fitting & FEWER RETURNS",
+        "heading_block_color_scheme": "",
+        "description": "<p>If you have large or wide feet, chances are you have already invested years of your life sifting through all kinds of cool boots and shoes on numerous websites and at shoe stores, only to learn the popular styles displayed are not offered in Big and Tall sizes or Wide widths. XLFeet.com offers the most cutting-edge shoes, boots, slippers, socks and insoles in the size and width you are looking for. They are always working to carry as many of the oddball sizes which span 7-13, 14, 15, 16, 17, 18, 19, 20, 21, and extra-wide to EEEEEE as possible.<br/><br/></p>",
+        "custom_page_width": 1200,
+        "show_pills": true,
+        "grid_columns": 4,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -348,6 +388,7 @@
     "company_journey_Qhxntg",
     "company_highlights_zjbCWe",
     "company_highlights_AzbEGh",
-    "company_highlights_w8UyPb"
+    "company_highlights_w8UyPb",
+    "featured_in_the_press_ptKPLL"
   ]
 }
