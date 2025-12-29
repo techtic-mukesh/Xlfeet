@@ -66,26 +66,25 @@
             {%- endif -%}
           {%- endfor -%}
 
-          {%- comment -%} Normalize video URL to Fancybox-friendly link {%- endcomment -%}
+          {%- comment -%} Normalize video URL and prepare poster fallback {%- endcomment -%}
           {%- assign url = e.video_url | default: e.video_url.value | default: '' | strip -%}
           {%- assign video_type = 'other' -%}
           {%- assign video_href = url -%}
+          {%- assign yt_id = '' -%}
 
-          {%- if url contains 'youtube.com/watch' or url contains 'youtu.be/' or url contains '/shorts/' or url.size == 11 -%}
-            {%- assign id = '' -%}
-            {%- if url contains 'youtube.com/watch' -%}
-              {%- assign id = url | split: 'v=' | last | split: '&' | first -%}
-            {%- elsif url contains 'youtu.be/' -%}
-              {%- assign id = url | split: 'youtu.be/' | last | split: '?' | first -%}
-            {%- elsif url contains '/shorts/' -%}
-              {%- assign id = url | split: '/shorts/' | last | split: '?' | first -%}
-            {%- elsif url != '' and url.size == 11 -%}
-              {%- assign id = url -%}
-            {%- endif -%}
-            {%- if id != '' -%}
-              {%- assign video_href = 'https://www.youtube.com/embed/' | append: id | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1' -%}
-              {%- assign video_type = 'iframe' -%}
-            {%- endif -%}
+          {%- if url contains 'youtube.com/watch' -%}
+            {%- assign yt_id = url | split: 'v=' | last | split: '&' | first -%}
+          {%- elsif url contains 'youtu.be/' -%}
+            {%- assign yt_id = url | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- elsif url contains '/shorts/' -%}
+            {%- assign yt_id = url | split: '/shorts/' | last | split: '?' | first -%}
+          {%- elsif url != '' and url.size == 11 -%}
+            {%- assign yt_id = url -%}
+          {%- endif -%}
+
+          {%- if yt_id != '' -%}
+            {%- assign video_href = 'https://www.youtube.com/embed/' | append: yt_id | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1' -%}
+            {%- assign video_type = 'iframe' -%}
           {%- elsif url contains 'vimeo.com/' -%}
             {%- assign vimeo_id = url | split: 'vimeo.com/' | last | split: '/' | last | split: '?' | first -%}
             {%- if vimeo_id != '' -%}
@@ -96,14 +95,27 @@
             {%- assign video_type = 'html5video' -%}
           {%- endif -%}
 
+          {%- comment -%} Poster: use metaobject image if available, else YouTube thumbnail {%- endcomment -%}
+          {%- capture poster_html -%}{%- endcapture -%}
+          {%- if e.thumbnail != blank -%}
+            {%- capture poster_html -%}
+              {{ e.thumbnail | image_url: width: 960 | image_tag: class: 'motion-reduce', loading: 'lazy', widths: '400, 600, 800, 960', alt: e.title }}
+            {%- endcapture -%}
+          {%- endif -%}
+          {%- if poster_html == '' and yt_id != '' -%}
+            {%- assign yt_poster = 'https://i.ytimg.com/vi/' | append: yt_id | append: '/hqdefault.jpg' -%}
+            {%- capture poster_html -%}
+              <img src="{{ yt_poster }}" alt="{{ e.title | escape }}" loading="lazy" width="960" height="540" class="motion-reduce">
+            {%- endcapture -%}
+          {%- endif -%}
+
           <article class="grid__item video-card" data-tags="{{ tag_handles | strip }}">
             <div class="card-wrapper underline-links-hover">
               <div class="card card--media card--text">
                 <div class="card__inner ratio" style="--ratio-percent: 56.25%;">
                   <div class="media media--transparent media--hover-effect">
-                    {%- if e.thumbnail != blank -%}
-                      {{ e.thumbnail | image_url: width: 960 | image_tag:
-                        class: 'motion-reduce', loading: 'lazy', widths: '400, 600, 800, 960', alt: e.title }}
+                    {%- if poster_html != '' -%}
+                      {{ poster_html }}
                     {%- else -%}
                       <div class="media" style="background:#f2f2f2;"></div>
                     {%- endif -%}
