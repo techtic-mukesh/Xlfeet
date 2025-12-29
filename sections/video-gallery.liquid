@@ -1,0 +1,186 @@
+{% comment %}
+  Video gallery powered by Metaobjects
+  - Definition handle: xl_feet_videos (configurable in settings)
+  - Required fields (field handles in parentheses):
+      • Thumbnail (thumbnail) — Image
+      • Title (title) — Single line text
+      • Video URL (video_url) — URL
+      • Video tag(s) (video_tag) — Single line text (comma-separated)
+{% endcomment %}
+
+{%- liquid
+  assign def_handle = section.settings.definition_handle | default: 'xl_feet_videos' | strip
+  assign entries_drop = shop.metaobjects[def_handle]
+  assign entries = nil
+  if entries_drop and entries_drop.values
+    assign entries = entries_drop.values
+  endif
+-%}
+
+<section id="video-metaobject-{{ section.id }}" class="section">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if entries == blank -%}
+      <div class="color-background-2 gradient content-container">
+        <p>No videos found. Ensure storefront access is enabled for ‘{{ def_handle }}’ and you have entries.</p>
+      </div>
+    {%- else -%}
+      {%- comment -%} Collect unique tags (normalized) across all entries {%- endcomment -%}
+      {%- assign unique_tags = '' | split: '' -%}
+      {%- for e in entries -%}
+        {%- assign raw = e.video_tag | default: '' -%}
+        {%- assign tokens = raw | replace: ';', ',' | split: ',' -%}
+        {%- for t in tokens -%}
+          {%- assign norm = t | strip -%}
+          {%- assign handle = norm | handleize -%}
+          {%- if handle != '' -%}
+            {%- unless unique_tags contains handle -%}
+              {%- assign add = handle | split: ',' -%}
+              {%- assign unique_tags = unique_tags | concat: add -%}
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+      {%- assign unique_tags = unique_tags | sort -%}
+
+      <div class="video-filter-buttons" role="tablist" aria-label="Video filters">
+        <button class="button button--tertiary is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        {%- for tag in unique_tags -%}
+          {%- assign label = tag | replace: '-', ' ' | capitalize -%}
+          <button class="button button--tertiary" data-filter="{{ tag }}" role="tab" aria-selected="false">{{ label }}</button>
+        {%- endfor -%}
+      </div>
+
+      <div class="video-grid grid grid--{{ section.settings.columns_mobile }}-col grid--{{ section.settings.columns_desktop }}-col-desktop">
+        {%- for e in entries -%}
+          {%- assign raw = e.video_tag | default: '' -%}
+          {%- assign tokens = raw | replace: ';', ',' | split: ',' -%}
+          {%- assign tag_handles = '' -%}
+          {%- for t in tokens -%}
+            {%- assign h = t | strip | handleize -%}
+            {%- if h != '' -%}
+              {%- assign tag_handles = tag_handles | append: h | append: ' ' -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          <article class="grid__item video-card" data-tags="{{ tag_handles | strip }}">
+            <div class="card-wrapper underline-links-hover">
+              <div class="card card--media">
+                <div class="card__inner ratio" style="--ratio-percent: 56.25%;">
+                  {%- if e.thumbnail != blank -%}
+                    {{ e.thumbnail | image_url: width: 960 | image_tag:
+                      class: 'motion-reduce', loading: 'lazy', widths: '400, 600, 800, 960', alt: e.title }}
+                  {%- else -%}
+                    <div class="media" style="background:#f2f2f2;"></div>
+                  {%- endif -%}
+                  <a class="card__link full-unstyled-link video-card__link" href="{{ e.video_url }}" target="_blank" rel="noopener" aria-label="{{ e.title | escape }}"></a>
+                  <span class="video-card__play" aria-hidden="true">▶</span>
+                </div>
+                <div class="card__content">
+                  <h3 class="card__heading h5">{{ e.title | escape }}</h3>
+                </div>
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <style>
+    #video-metaobject-{{ section.id }} .video-filter-buttons {
+      display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1rem;
+    }
+    #video-metaobject-{{ section.id }} .video-filter-buttons .is-active {
+      background: rgb(var(--color-foreground));
+      color: rgb(var(--color-background));
+    }
+    #video-metaobject-{{ section.id }} .video-card[hidden] { display: none !important; }
+    #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; }
+    #video-metaobject-{{ section.id }} .video-card__play {
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      font-size:2rem; background:rgba(0,0,0,.5); color:#fff; border-radius:50%; width:3rem; height:3rem;
+      display:grid; place-items:center;
+    }
+  </style>
+
+  <script>
+    (function() {
+      const root = document.getElementById('video-metaobject-{{ section.id }}');
+      if (!root) return;
+
+      const buttons = Array.from(root.querySelectorAll('[data-filter]'));
+      const cards = Array.from(root.querySelectorAll('.video-card'));
+
+      function setActive(button) {
+        buttons.forEach(b => b.classList.toggle('is-active', b === button));
+        buttons.forEach(b => b.setAttribute('aria-selected', b === button ? 'true' : 'false'));
+      }
+
+      function applyFilter(filter) {
+        if (filter === 'all') {
+          cards.forEach(el => el.hidden = false);
+          return;
+        }
+        cards.forEach(el => {
+          const tags = (el.dataset.tags || '').split(' ').filter(Boolean);
+          el.hidden = !tags.includes(filter);
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(btn);
+          applyFilter(btn.dataset.filter);
+        });
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Video gallery",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "definition_handle",
+      "label": "Metaobject definition handle",
+      "default": "xl_feet_videos",
+      "info": "Settings → Content → Metaobjects → definition → Handle"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "min": 1, "max": 3, "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2, "max": 4, "step": 1,
+      "default": 3
+    }
+  ],
+  "presets": [
+    { "name": "Video gallery" }
+  ]
+}
+{% endschema %}
