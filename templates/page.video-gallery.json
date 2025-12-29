@@ -32,10 +32,22 @@
         "font_size_min": 26,
         "font_size_max": 48
       }
+    },
+    "video_gallery_EBPXfj": {
+      "type": "video-gallery",
+      "name": "Video gallery",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "definition_handle": "xl_feet_videos",
+        "columns_mobile": 1,
+        "columns_desktop": 3
+      }
     }
   },
   "order": [
     "main",
-    "page_banner_CeHxig"
+    "page_banner_CeHxig",
+    "video_gallery_EBPXfj"
   ]
 }
