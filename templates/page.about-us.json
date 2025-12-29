@@ -394,6 +394,7 @@
       "type": "custom-image-with-text",
       "name": "Custom Image with text",
       "settings": {
+        "custom_page_width": 1164,
         "color_scheme": "",
         "image": "shopify://shop_images/Rectangle_40227_6b7fd087-6367-4c54-8633-61982d7b4aec.png",
         "image_position": "right",
