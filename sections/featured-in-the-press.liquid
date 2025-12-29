@@ -105,9 +105,12 @@ text-align: center;
 
     <div class="feature_in_press_blocks">
         {% for block in section.blocks %}
-            <div class="feature_in_press_blocks_left">
-            {% if block.settings.left_side_img != blank %} <img src="{{ block.settings.left_side_img | img_url : 'master' }}"> {% endif %}
-            </div>
+            {% if block.settings.left_side_img != blank %}
+                <div class="feature_in_press_blocks_left">
+                    <img src="{{ block.settings.left_side_img | img_url : 'master' }}"> 
+                </div>
+            {% endif %}
+            {% if block.settings.first_image_block  != blank or block.settings.first_image_text_block != blank or block.settings.second_image_block  != blank or block.settings.second_image_text_block != blank  %}
             <div class="feature_in_press_blocks_right_grid">
                 <div class="feature_in_press_blocks_right">
                     <div class="">
@@ -126,6 +129,7 @@ text-align: center;
                     </div>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
   </div>
