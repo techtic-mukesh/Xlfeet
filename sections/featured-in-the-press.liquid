@@ -95,22 +95,31 @@ text-align: center;
       </div>
     </div>
 
-    <div class="grid">
-      {% for block in section.blocks %}
-        {% if block.type == 'card' %}
-          <div class="card">
-            {% if block.settings.image %}
-              {{ block.settings.image | image_url: width: 600 | image_tag }}
-            {% endif %}
-            <div class="card-content">
-              <h3>{{ block.settings.title }}</h3>
-              <p>{{ block.settings.text }}</p>
+    <div class="feature_in_press_blocks">
+        {% for block in section.blocks %}
+            <div>
+            {% if block.settings.left_side_img != blank %} <img src="{{ block.settings.left_side_img | img_url : 'master' }}"> {% endif %}
             </div>
-          </div>
-        {% endif %}
-      {% endfor %}
+            <div class="feature_in_press_blocks_right_grid">
+                <div class="feature_in_press_blocks_right">
+                    <div class="">
+                    {% if block.settings.first_image_block  != blank %} <img src="{{ block.settings.first_image_block  | img_url : 'master' }}"> {% endif %}
+                    </div> 
+                    <div>
+                        {{ block.settings.first_image_text_block }}
+                    </div>
+                </div>
+                <div class="feature_in_press_blocks_right">
+                    <div class="">
+                    {% if block.settings.second_image_block  != blank %} <img src="{{ block.settings.second_image_block  | img_url : 'master' }}"> {% endif %}
+                    </div> 
+                    <div>
+                        {{ block.settings.second_image_text_block }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-
   </div>
 </section>
 
@@ -229,19 +238,37 @@ text-align: center;
       ]
     },
     {
-      "type": "card",
-      "name": "Image Card",
+      "type": "image_with_text",
+      "name": "Image With Text",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+            "type": "image_picker",
+            "id": "left_side_img",
+            "label": "Left Side Image"
         },
         {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Card title"
+            "type": "header",
+            "content": "Right Side Image With Text Block"
+        },
+        {
+            "type": "image_picker",
+            "id": "first_image_block",
+            "label": "First Image"
+        },
+        {
+            "type":"text",
+            "id": "first_image_text_block",
+            "label": "First Image Block"
+        },
+        {
+            "type": "image_picker",
+            "id": "second_image_block",
+            "label": "Second Image"
+        },
+        {
+            "type":"text",
+            "id": "second_image_text_block",
+            "label": "Second Image Block"
         }
       ]
     }
