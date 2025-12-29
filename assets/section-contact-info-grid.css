@@ -30,6 +30,7 @@
 
 .contact-info-grid__icon {
   margin-bottom: 1rem;
+  line-height:normal;
 }
 
 .contact-info-grid__heading {
