@@ -1,11 +1,11 @@
 {% comment %}
   Video gallery powered by Metaobjects + Fancybox
   Definition handle default: xl_feet_videos
-  Required field handles:
-    - thumbnail (Image)
-    - title     (Single line text)
-    - video_url (URL — YouTube/Vimeo/MP4)
-    - video_tag (Single line text — comma-separated tags)
+  Field handles (exact):
+    - thumbnail (image/file reference)  — optional, falls back to YouTube preview
+    - title      (single_line_text)
+    - video_url  (url) — YouTube/Vimeo/MP4
+    - video_tag  (single_line_text) — comma separated
 {% endcomment %}
 
 {%- liquid
@@ -26,14 +26,14 @@
 
     {%- if entries == blank -%}
       <div class="color-background-2 gradient content-container">
-        <p>No videos found. Ensure storefront access is enabled for ‘{{ def_handle }}’ and you have entries.</p>
+        <p>No videos found. Enable Storefront access for the “{{ def_handle }}” metaobject and expose the fields.</p>
       </div>
     {%- else -%}
       {%- comment -%} Build unique tag list {%- endcomment -%}
       {%- assign unique_tags = '' | split: '' -%}
       {%- for e in entries -%}
-        {%- assign raw = e.video_tag | default: '' -%}
-        {%- assign tokens = raw | replace: ';', ',' | split: ',' -%}
+        {%- assign raw_tag = e.video_tag | default: e.fields.video_tag | default: e.video_tag.value | default: '' -%}
+        {%- assign tokens = raw_tag | replace: ';', ',' | split: ',' -%}
         {%- for t in tokens -%}
           {%- assign handle = t | strip | handleize -%}
           {%- if handle != '' -%}
@@ -56,56 +56,65 @@
 
       <div class="video-grid grid grid--{{ section.settings.columns_mobile }}-col grid--{{ section.settings.columns_desktop }}-col-desktop">
         {%- for e in entries -%}
-          {%- assign raw = e.video_tag | default: '' -%}
-          {%- assign tokens = raw | replace: ';', ',' | split: ',' -%}
+          {%- comment -%} Tags for filtering {%- endcomment -%}
+          {%- assign raw_tag = e.video_tag | default: e.fields.video_tag | default: e.video_tag.value | default: '' -%}
+          {%- assign tag_tokens = raw_tag | replace: ';', ',' | split: ',' -%}
           {%- assign tag_handles = '' -%}
-          {%- for t in tokens -%}
+          {%- for t in tag_tokens -%}
             {%- assign h = t | strip | handleize -%}
-            {%- if h != '' -%}
-              {%- assign tag_handles = tag_handles | append: h | append: ' ' -%}
-            {%- endif -%}
+            {%- if h != '' -%}{%- assign tag_handles = tag_handles | append: h | append: ' ' -%}{%- endif -%}
           {%- endfor -%}
 
-          {%- comment -%} Normalize video URL and prepare poster fallback {%- endcomment -%}
-          {%- assign url = e.video_url | default: e.video_url.value | default: '' | strip -%}
-          {%- assign video_type = 'other' -%}
-          {%- assign video_href = url -%}
-          {%- assign yt_id = '' -%}
-
-          {%- if url contains 'youtube.com/watch' -%}
-            {%- assign yt_id = url | split: 'v=' | last | split: '&' | first -%}
-          {%- elsif url contains 'youtu.be/' -%}
-            {%- assign yt_id = url | split: 'youtu.be/' | last | split: '?' | first -%}
-          {%- elsif url contains '/shorts/' -%}
-            {%- assign yt_id = url | split: '/shorts/' | last | split: '?' | first -%}
-          {%- elsif url != '' and url.size == 11 -%}
-            {%- assign yt_id = url -%}
+          {%- comment -%} Resolve field values safely {%- endcomment -%}
+          {%- assign title_text = e.title | default: e.fields.title | default: e.title.value | default: '' -%}
+          {%- assign raw_url = '' -%}
+          {%- if e.video_url and e.video_url.value -%}
+            {%- assign raw_url = e.video_url.value | strip -%}
+          {%- elsif e.fields and e.fields.video_url -%}
+            {%- assign raw_url = e.fields.video_url | strip -%}
           {%- endif -%}
 
+          {%- comment -%} Normalize YouTube/Vimeo/MP4 for Fancybox {%- endcomment -%}
+          {%- assign video_type = 'other' -%}
+          {%- assign video_href = raw_url -%}
+          {%- assign yt_id = '' -%}
+          {%- if raw_url contains 'youtube.com/watch' -%}
+            {%- assign yt_id = raw_url | split: 'v=' | last | split: '&' | first -%}
+          {%- elsif raw_url contains 'youtu.be/' -%}
+            {%- assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- elsif raw_url contains '/shorts/' -%}
+            {%- assign yt_id = raw_url | split: '/shorts/' | last | split: '?' | first -%}
+          {%- elsif raw_url != '' and raw_url.size == 11 -%}
+            {%- assign yt_id = raw_url -%}
+          {%- endif -%}
           {%- if yt_id != '' -%}
             {%- assign video_href = 'https://www.youtube.com/embed/' | append: yt_id | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1' -%}
             {%- assign video_type = 'iframe' -%}
-          {%- elsif url contains 'vimeo.com/' -%}
-            {%- assign vimeo_id = url | split: 'vimeo.com/' | last | split: '/' | last | split: '?' | first -%}
+          {%- elsif raw_url contains 'vimeo.com/' -%}
+            {%- assign vimeo_id = raw_url | split: 'vimeo.com/' | last | split: '/' | last | split: '?' | first -%}
             {%- if vimeo_id != '' -%}
               {%- assign video_href = 'https://player.vimeo.com/video/' | append: vimeo_id | append: '?autoplay=1&byline=0&portrait=0' -%}
               {%- assign video_type = 'iframe' -%}
             {%- endif -%}
-          {%- elsif url contains '.mp4' -%}
+          {%- elsif raw_url contains '.mp4' -%}
             {%- assign video_type = 'html5video' -%}
           {%- endif -%}
 
-          {%- comment -%} Poster: use metaobject image if available, else YouTube thumbnail {%- endcomment -%}
+          {%- comment -%} Poster image: prefer metaobject thumbnail, else YouTube preview {%- endcomment -%}
           {%- capture poster_html -%}{%- endcapture -%}
-          {%- if e.thumbnail != blank -%}
+          {%- if e.thumbnail and e.thumbnail != blank -%}
             {%- capture poster_html -%}
-              {{ e.thumbnail | image_url: width: 960 | image_tag: class: 'motion-reduce', loading: 'lazy', widths: '400, 600, 800, 960', alt: e.title }}
+              {{ e.thumbnail | image_url: width: 960 | image_tag: class: 'motion-reduce', loading: 'lazy', decoding: 'async', widths: '400, 600, 800, 960', alt: title_text }}
+            {%- endcapture -%}
+          {%- elsif e.fields and e.fields.thumbnail -%}
+            {%- capture poster_html -%}
+              {{ e.fields.thumbnail | image_url: width: 960 | image_tag: class: 'motion-reduce', loading: 'lazy', decoding: 'async', widths: '400, 600, 800, 960', alt: title_text }}
             {%- endcapture -%}
           {%- endif -%}
           {%- if poster_html == '' and yt_id != '' -%}
-            {%- assign yt_poster = 'https://i.ytimg.com/vi/' | append: yt_id | append: '/hqdefault.jpg' -%}
+            {%- assign yt_poster = 'https://img.youtube.com/vi/' | append: yt_id | append: '/hqdefault.jpg' -%}
             {%- capture poster_html -%}
-              <img src="{{ yt_poster }}" alt="{{ e.title | escape }}" loading="lazy" width="960" height="540" class="motion-reduce">
+              <img src="{{ yt_poster }}" alt="{{ title_text | escape }}" loading="lazy" decoding="async" width="960" height="540" class="motion-reduce" referrerpolicy="no-referrer">
             {%- endcapture -%}
           {%- endif -%}
 
@@ -121,14 +130,16 @@
                     {%- endif -%}
                   </div>
 
+                  {%- if video_href != '' -%}
                   <a
                     class="card__link full-unstyled-link video-card__link"
                     data-fancybox="video-{{ section.id }}"
                     {% if video_type != 'other' %}data-type="{{ video_type }}"{% endif %}
                     href="{{ video_href }}"
-                    data-caption="{{ e.title | escape }}"
-                    aria-label="{{ e.title | escape }}"
+                    data-caption="{{ title_text | escape }}"
+                    aria-label="{{ title_text | escape }}"
                   ></a>
+                  {%- endif -%}
 
                   <span class="video-card__play" aria-hidden="true">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +150,7 @@
                 </div>
 
                 <div class="card__content">
-                  <h3 class="card__heading h5">{{ e.title | escape }}</h3>
+                  <h3 class="card__heading h5">{{ title_text | escape }}</h3>
                 </div>
               </div>
             </div>
@@ -214,7 +225,7 @@
       { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }
     ]},
     { "type": "text", "id": "definition_handle", "label": "Metaobject definition handle", "default": "xl_feet_videos",
-      "info": "Settings → Content → Metaobjects → definition → Handle" },
+      "info": "Settings → Content → Metaobjects → definition → Storefront access: enable + expose each field." },
     { "type": "range", "id": "columns_mobile", "label": "Columns on mobile", "min": 1, "max": 3, "step": 1, "default": 1 },
     { "type": "range", "id": "columns_desktop", "label": "Columns on desktop", "min": 2, "max": 4, "step": 1, "default": 3 }
   ],
