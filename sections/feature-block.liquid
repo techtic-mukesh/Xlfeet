@@ -145,6 +145,15 @@
   .feature-blocks-{{ section.id }} .feature-text p {
     margin: 0;
   }
+  @media screen and (max-width: 989px) {
+    .feature-blocks-{{ section.id }} .feature-title {
+      font-size:14px;
+    }
+    .feature-blocks-{{ section.id }} .feature-text p {
+      font-size:12px;
+      line-height: 20px;
+    }
+  }
 {%- endstyle -%}
 
 <div class="feature-blocks-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
