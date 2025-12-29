@@ -3,7 +3,6 @@
   Theme: Shopify Dawn
 {% endcomment %}
 
-{{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
 <section class="image-text-cta color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
@@ -20,23 +19,25 @@
       {% endif %}
 
       <div class="image-text-cta__content">
-        {% if section.settings.eyebrow != blank %}
-          <p class="image-text-cta__eyebrow">{{ section.settings.eyebrow }}</p>
-        {% endif %}
+        <div class="">
+            {% if section.settings.eyebrow != blank %}
+            <p class="image-text-cta__eyebrow">{{ section.settings.eyebrow }}</p>
+            {% endif %}
 
-        {% if section.settings.heading != blank %}
-          <h2 class="image-text-cta__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
-        {% endif %}
+            {% if section.settings.heading != blank %}
+            <h2 class="image-text-cta__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+            {% endif %}
 
-        {% if section.settings.text != blank %}
-          <div class="image-text-cta__text rte">{{ section.settings.text }}</div>
-        {% endif %}
+            {% if section.settings.text != blank %}
+            <div class="image-text-cta__text rte">{{ section.settings.text }}</div>
+            {% endif %}
 
-        {% if section.settings.button_label != blank %}
-          <a href="{{ section.settings.button_link }}" class="button">
-            {{ section.settings.button_label }}
-          </a>
-        {% endif %}
+            {% if section.settings.button_label != blank %}
+            <a href="{{ section.settings.button_link }}" class="button">
+                {{ section.settings.button_label }}
+            </a>
+            {% endif %}
+        </div>
       </div>
 
     </div>
