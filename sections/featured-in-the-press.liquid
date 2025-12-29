@@ -111,6 +111,16 @@ text-align: center;
 .feature_in_press_blocks{
     flex-direction: column;
 }
+ {% for block in section.blocks %}
+    .block-grid-{{ block.id }} .feature_in_press_blocks_right_img {
+        max-width: 150px;
+        width: 100%;
+        min-width:150px;
+    }
+ {% endfor %}
+ .feature_in_press_blocks_right_content{
+    font-size: 12px;
+ }
 }
 {% endstyle %}
 
