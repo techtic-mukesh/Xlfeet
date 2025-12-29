@@ -136,4 +136,8 @@
     max-width: 30px;
     width: 100%;
 }
+.timeline-item{
+    padding: 15px 1.75rem;
+    min-width: 170px;
+}
 }
