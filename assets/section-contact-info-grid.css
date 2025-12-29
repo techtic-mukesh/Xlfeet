@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+    color: rgba(var(--color-foreground), 1);
 }
 
 .contact-info-grid__content p a{
