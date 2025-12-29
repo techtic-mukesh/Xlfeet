@@ -448,6 +448,7 @@
       "name": "Feature Blocks",
       "settings": {
         "color_scheme": "",
+        "custom_page_width": 1400,
         "background_color": "#ffffff",
         "icon_color": "#000000",
         "title_color": "#000000",
