@@ -28,7 +28,7 @@ text-align: center;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .comp_heighlight_description p {
     margin: 30px 0;
@@ -109,6 +109,9 @@ text-align: center;
 @media screen and (max-width: 749px) {
   .bottom-feature-grid-{{ section.id }} .grid {
     grid-template-columns: 1fr;
+  }
+  .bottom-feature-grid-{{ section.id }} .pill-buttons {
+    flex-wrap: wrap;
   }
 }
 {% endstyle %}
