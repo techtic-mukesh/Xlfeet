@@ -128,9 +128,9 @@
 
 @media screen and (max-width: 749px) {
 .comp_heighlight_heading{
-    font-size: 14px;
+    font-size: 12px;
     gap: 10px;
-    padding: 18px 20px;
+    padding: 10px;
 }
 .comp_heighlight_heading img {
     max-width: 30px;
