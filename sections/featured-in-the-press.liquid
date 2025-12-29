@@ -122,6 +122,11 @@ text-align: center;
     font-size: 12px;
  }
 }
+@media screen and (max-width: 450px) {
+.feature_in_press_blocks_right{
+    flex-direction:column;
+}
+}
 {% endstyle %}
 
 <section class="bottom-feature-grid-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
