@@ -49,3 +49,6 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
 .custom_contact_us_grid.contact{
     color: rgba(var(--color-foreground), 1);
 }
+.contact-info .list-social{
+    justify-content: flex-start;
+}
