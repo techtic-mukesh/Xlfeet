@@ -208,7 +208,9 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     #video-metaobject-{{ section.id }} .video-filter-buttons .button{
         border:1px solid {{  section.settings.tab_txt_color }};
     }
-    
+    #video-metaobject-{{ section.id }} .card--media:hover .video-card__link{
+      transform: scale(1.04);
+    }
     @media (prefers-reduced-motion: reduce) {
       #video-metaobject-{{ section.id }} .card--media .media { transition: none; }
     }
