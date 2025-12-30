@@ -288,7 +288,16 @@
       "label": "Padding bottom (desktop)",
       "default": 60
     },
-    { "type": "range", "id": "columns_mobile", "label": "Columns on mobile", "min": 1, "max": 3, "step": 1, "default": 1 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" }
+      ],
+      "default": "1"
+    },
     { "type": "range", "id": "columns_desktop", "label": "Columns on desktop", "min": 2, "max": 4, "step": 1, "default": 3 }
   ],
   "presets": [{ "name": "Video gallery" }]
