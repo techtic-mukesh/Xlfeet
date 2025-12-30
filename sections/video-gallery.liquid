@@ -177,9 +177,11 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
                   </span>
                 </div>
 
-                <div class="card__content">
-                  <h3 class="card__heading h3">{{ title_text | escape }}</h3>
-                </div>
+                {% if section.settings.show_card_heading %}
+                  <div class="card__content">
+                    <h3 class="card__heading h3">{{ title_text | escape }}</h3>
+                  </div>
+                {% endif %}
               </div>
             </div>
           </article>
