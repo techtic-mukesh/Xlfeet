@@ -25,6 +25,7 @@ button.button.button--tertiary.button--small.tag_tabular {
   font-size: 16px;
   font-weight: 500;
   text-transform: capitalize;
+  padding: 8px 20px;
 }
 button.button.button--tertiary.button--small.tag_tabular.is-active {
     background-color:{{  section.settings.active_tab_background_clr }};
@@ -205,7 +206,9 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block; 
           transition: transform .4s ease; 
       background-color: {{ section.settings.bg_color | color_modify: 'alpha', bg_opacity }}; }
-    #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
+    #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; 
+          line-height: 0;
+    }
     #video-metaobject-{{ section.id }} .video-filter-buttons .button{
         border:1px solid {{  section.settings.tab_txt_color }};
     }
