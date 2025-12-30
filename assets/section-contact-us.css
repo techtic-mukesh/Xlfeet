@@ -96,6 +96,9 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
 .left_info_grid{
     gap:20px;
 }
+.conatct_right_side_content{
+    padding:20px;
+}
 }
 @media screen and (max-width: 749px) {
     .conatct_left_side_content , .conatct_right_side_content {
