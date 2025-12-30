@@ -37,7 +37,7 @@
         "address_title": "Address",
         "address_content": "<p>XLFEET INC.<br/>242 FILMORE AVE EAST<br/>ST. PAUL, MN 55107</p>",
         "working_hours_title": "",
-        "working_hours_content": "<p><strong>monday to friday</strong><br/>11:00 - 6:00<br/><br/><strong>Saturday</strong><br/>12:00 - 5:00 (Central Time)</p>",
+        "working_hours_content": "<p><strong>monday to friday</strong><br/>11:00 - 6:00<br/><br/><strong>Saturday</strong><br/>12:00 - 5:00 (Central<br/>Time)</p>",
         "phone_title": "Telephone",
         "phone": "+1 (651) 797-6000",
         "show_social": true,
