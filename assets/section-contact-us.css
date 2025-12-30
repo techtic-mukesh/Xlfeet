@@ -121,4 +121,10 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     .contact-info h4, .contact-info p strong{
         font-size:16px;
     }
+    .conatct_info_left{
+        gap:20px;
+    }
+    .conatct_info_left{
+        width: 70%;
+    }
 }
