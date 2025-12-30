@@ -81,3 +81,9 @@ span.field_heading {
     width: 100%;
     font-weight: 500;
 }
+@media screen and (max-width: 1024px) {
+.left_info_grid {
+    display: flex;
+    gap: 50px;
+}
+}
