@@ -6,9 +6,12 @@
     max-width: 50%;
     width: 100%;
 }
-.conatct_right_side_content{
+.conatct_right_side_content {
     max-width: 42.5%;
+    background: #F4F4F4;
     width: 100%;
+    border-radius: 30px;
+    padding: 30px;
 }
 .left_info_grid {
     display: flex;
