@@ -106,6 +106,12 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
         font-size: 14px;
         line-height: 20px;
     }
+    .contact-info a{
+        padding: 6px;
+    }
+    .conatct_left_side_content {
+        max-width:55%;
+    }
 }
 @media screen and (max-width: 749px) {
     .conatct_left_side_content , .conatct_right_side_content {
