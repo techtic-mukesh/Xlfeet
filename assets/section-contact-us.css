@@ -35,3 +35,8 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
 .contact-info p {
     margin: 0;
 }
+.conatct_info_left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
