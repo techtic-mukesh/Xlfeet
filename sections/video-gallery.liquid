@@ -218,6 +218,100 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     @media (prefers-reduced-motion: reduce) {
       #video-metaobject-{{ section.id }} .card--media .media { transition: none; }
     }
+    /* ================================
+   TAB ANIMATIONS (NON-BREAKING)
+================================ */
+#video-metaobject-{{ section.id }} .video-filter-buttons {
+  position: relative;
+}
+
+#video-metaobject-{{ section.id }} .video-filter-buttons .button {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color .35s ease,
+    color .35s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+/* Hover lift */
+#video-metaobject-{{ section.id }} .video-filter-buttons .button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+
+/* Active tab pulse */
+#video-metaobject-{{ section.id }} .video-filter-buttons .button.is-active {
+  animation: tabPulse .45s ease-out;
+}
+
+/* Underline animation */
+#video-metaobject-{{ section.id }} .video-filter-buttons .button::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width .35s ease;
+}
+
+#video-metaobject-{{ section.id }} .video-filter-buttons .button:hover::after,
+#video-metaobject-{{ section.id }} .video-filter-buttons .button.is-active::after {
+  width: 70%;
+}
+
+/* Click ripple */
+#video-metaobject-{{ section.id }} .video-filter-buttons .button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.25);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+#video-metaobject-{{ section.id }} .video-filter-buttons .button:active::before {
+  opacity: 1;
+}
+
+/* Pulse keyframe */
+@keyframes tabPulse {
+  0% { transform: scale(0.96); }
+  60% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* ================================
+   VIDEO GRID FILTER ANIMATION
+================================ */
+#video-metaobject-{{ section.id }} .video-card {
+  animation: fadeInUp .45s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion safety */
+@media (prefers-reduced-motion: reduce) {
+  #video-metaobject-{{ section.id }} .video-filter-buttons .button,
+  #video-metaobject-{{ section.id }} .video-card {
+    animation: none;
+    transition: none;
+  }
+}
+
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
