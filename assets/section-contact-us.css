@@ -99,6 +99,13 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
 .conatct_right_side_content{
     padding:20px;
 }
+   .contact-info h4, .contact-info p strong{
+        font-size: 18px;
+    }
+    .contact-info p{
+        font-size: 14px;
+        line-height: 20px;
+    }
 }
 @media screen and (max-width: 749px) {
     .conatct_left_side_content , .conatct_right_side_content {
