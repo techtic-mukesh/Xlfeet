@@ -10,3 +10,7 @@
     max-width: 42.5%;
     width: 100%;
 }
+.left_info_grid {
+    display: flex;
+    gap: 100px;
+}
