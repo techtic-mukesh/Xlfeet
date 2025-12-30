@@ -59,3 +59,10 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     justify-content: flex-start;
     gap: 15px;
 }
+span.field_heading {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+    /* text-transform: capitalize; */
+}
