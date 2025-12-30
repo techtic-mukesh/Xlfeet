@@ -66,6 +66,6 @@ span.field_heading {
     margin-bottom: 10px;
     /* text-transform: capitalize; */
 }
-.custom_contact_us_grid .field:after{
+.custom_contact_us_grid .field:after ,.custom_contact_us_grid .field:hover.field:after{
     box-shadow:unset;
 }
