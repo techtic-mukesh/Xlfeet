@@ -72,3 +72,8 @@ span.field_heading {
 .custom_contact_us_grid .field__input:focus {
     box-shadow:unset;
 }
+.field__label{
+    color: rgba(var(--color-foreground), 1);
+    font-weight: 300;
+    font-size: 1.4rem;
+}
