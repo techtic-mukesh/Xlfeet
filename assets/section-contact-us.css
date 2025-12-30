@@ -1,0 +1,12 @@
+.custom_contact_us_grid {
+    display: flex;
+    justify-content: space-between;
+}
+.conatct_left_side_content {
+    max-width: 50%;
+    width: 100%;
+}
+.conatct_right_side_content{
+    max-width: 42.5%;
+    width: 100%;
+}
