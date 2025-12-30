@@ -195,7 +195,7 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block; }
     #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
     #video-metaobject-{{ section.id }} .video-filter-buttons .button{
-        border:1px solid {{  section.settings.active_tab_background_clr }};
+        {% comment %} border:1px solid {{  section.settings. active_tab_background_clr }}; {% endcomment %}
     }
     
     @media (prefers-reduced-motion: reduce) {
