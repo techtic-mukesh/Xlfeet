@@ -41,6 +41,7 @@
         "phone_title": "Telephone",
         "phone": "+1 (651) 797-6000",
         "show_social": true,
+        "conatct_info_heading_clr": "#216ca6",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
