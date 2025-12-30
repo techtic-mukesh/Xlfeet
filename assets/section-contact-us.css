@@ -97,3 +97,9 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     gap:20px;
 }
 }
+@media screen and (max-width: 749px) {
+    .conatct_left_side_content , .conatct_right_side_content {
+        max-width:100%;
+        width:100%;
+    }
+}
