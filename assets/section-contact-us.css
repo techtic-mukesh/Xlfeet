@@ -87,3 +87,10 @@ span.field_heading {
     gap: 50px;
 }
 }
+@media screen and (max-width: 989px) {
+h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    line-height: 50px;
+}
+}
