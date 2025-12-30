@@ -40,3 +40,6 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     flex-direction: column;
     gap: 30px;
 }
+.custom_contact_us_grid.contact{
+    color: rgba(var(--color-foreground), 1);
+}
