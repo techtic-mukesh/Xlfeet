@@ -33,7 +33,7 @@
       "name": "Conatct Us",
       "settings": {
         "heading": "Contact form",
-        "heading_size": "h2",
+        "heading_size": "h1",
         "address_title": "Address",
         "address_content": "<p>XLFEET INC.<br/>242 FILMORE AVE EAST<br/>ST. PAUL, MN 55107</p>",
         "working_hours_title": "",
