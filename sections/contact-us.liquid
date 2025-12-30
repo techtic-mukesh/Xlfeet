@@ -13,7 +13,9 @@
     border: 1px solid {{ section.settings.conatct_info_heading_clr }};
     border-radius: 50px;
 }
-
+.conatct_right_side_content{
+    background :{{  section.settings.conatct_from_bg_clr }};
+}
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient page-width">
@@ -259,6 +261,12 @@
       "type": "color",
       "id":"conatct_info_heading_clr",
       "label": "Conatct Info Heading Color"
+    },
+    {
+        "type":"color",
+        "id": "conatct_from_bg_clr",
+        "label": "Contact From Background Color",
+        "default":"#F4F4F4"
     },
     {
       "type": "color_scheme",
