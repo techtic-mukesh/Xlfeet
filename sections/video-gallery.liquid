@@ -61,10 +61,10 @@
       {%- assign unique_tags = unique_tags | sort -%}
 
       <div class="video-filter-buttons" role="tablist" aria-label="Video filters">
-        <button class="button button--tertiary button--small is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="button button--tertiary button--small tag_tabular is-active" data-filter="all" role="tab" aria-selected="true">All</button>
         {%- for tag in unique_tags -%}
           {%- assign label = tag | replace: '-', ' ' | capitalize -%}
-          <button class="button button--tertiary button--small" data-filter="{{ tag }}" role="tab" aria-selected="false">{{ label }}</button>
+          <button class="button button--tertiary button--small tag_tabular" data-filter="{{ tag }}" role="tab" aria-selected="false">{{ label }}</button>
         {%- endfor -%}
       </div>
 
