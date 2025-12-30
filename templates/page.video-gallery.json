@@ -37,8 +37,13 @@
       "type": "video-gallery",
       "name": "Video gallery",
       "settings": {
+        "color_scheme": "",
         "heading": "",
-        "definition_handle": "xl_feet_videos",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "definition_handle": "",
         "columns_mobile": 1,
         "columns_desktop": 3
       }
