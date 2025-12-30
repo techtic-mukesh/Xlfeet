@@ -14,3 +14,10 @@
     display: flex;
     gap: 100px;
 }
+h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    line-height: 67px;
+}
