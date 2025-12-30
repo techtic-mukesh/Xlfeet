@@ -41,7 +41,9 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     assign entries = entries_drop.values
   endif
 -%}
-
+{%- liquid
+  assign bg_opacity = section.settings.bg_opacity | divided_by: 100.0
+-%}
 <section id="video-metaobject-{{ section.id }}" class="section-{{ section.id }} section color-{{ section.settings.color_scheme }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
   <div class="page-width">
@@ -193,7 +195,8 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
         position:relative;
     }
     #video-metaobject-{{ section.id }} .card--media:hover .media { transform: scale(1.04); }
-    #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block;  background-color: {{ section.settings.bg_color | color_modify: 'alpha', opacity }}; }
+    #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block;  
+      background-color: {{ section.settings.bg_color | color_modify: 'alpha', bg_opacity }}; }
     #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
     #video-metaobject-{{ section.id }} .video-filter-buttons .button{
         border:1px solid {{  section.settings.tab_txt_color }};
