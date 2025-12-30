@@ -127,4 +127,10 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     .conatct_info_left{
         width: 70%;
     }
+    .contact-info .list-social{
+        gap:10px;
+    }
+    .contact-info a{
+        padding: 5px;
+    }
 }
