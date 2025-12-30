@@ -32,3 +32,6 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     text-decoration:none;
     color:currentColor;
 }
+.contact-info p {
+    margin: 0;
+}
