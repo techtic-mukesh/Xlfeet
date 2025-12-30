@@ -32,7 +32,7 @@
       "type": "contact-us",
       "name": "Conatct Us",
       "settings": {
-        "heading": "Contact form",
+        "heading": "Contact Us",
         "heading_size": "h1",
         "address_title": "Address",
         "address_content": "<p>XLFEET INC.<br/>242 FILMORE AVE EAST<br/>ST. PAUL, MN 55107</p>",
@@ -42,6 +42,7 @@
         "phone": "+1 (651) 797-6000",
         "show_social": true,
         "conatct_info_heading_clr": "#216ca6",
+        "conatct_from_bg_clr": "#f4f4f4",
         "color_scheme": "scheme-6395ba34-90ad-4b4d-b74c-c0570640edec",
         "padding_top": 36,
         "padding_bottom": 36
