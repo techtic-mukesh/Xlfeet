@@ -306,7 +306,12 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
     transition: none;
   }
 }
-
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .grid--3-col-desktop .grid__item {
+      width: calc(50% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
+      max-width: calc(50% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
+  }
+}
 @media screen and (min-width: 750px) {
   #video-metaobject-{{ section.id }} .video-filter-buttons{
       gap: 8px;
