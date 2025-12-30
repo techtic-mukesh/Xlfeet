@@ -12,40 +12,47 @@
     <div class="custom_contact_us_grid contact page-width page-width--narrow section-{{ section.id }}-padding">
         <div class="conatct_left_side_content">
             {%- if section.settings.heading != blank -%}
-            <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            {{ section.settings.heading }}
-            </h2>
+                <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                {{ section.settings.heading }}
+                </h2>
             {%- else -%}
-            <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+                <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
             {%- endif -%}
-            {% if section.settings.address != blank %}
-          <div class="contact-info">
-            <h4>Address</h4>
-            {{ section.settings.address }}
-          </div>
-        {% endif %}
 
-        {% if section.settings.working_hours != blank %}
-          <div class="contact-info">
-            <h4>Working Hours</h4>
-            {{ section.settings.working_hours }}
-          </div>
-        {% endif %}
+            {% if section.settings.address_content != blank %}
+                <div class="contact-info">
+                {% if section.settings.address_title != blank %}
+                    <h4>{{ section.settings.address_title }}</h4>
+                {% endif %}
+                {{ section.settings.address_content }}
+                </div>
+            {% endif %}
 
-        {% if section.settings.phone != blank %}
-          <div class="contact-info">
-            <h4>Telephone</h4>
-            <a href="tel:{{ section.settings.phone }}">
-              {{ section.settings.phone }}
-            </a>
-          </div>
-        {% endif %}
+            {% if section.settings.working_hours_content != blank %}
+                <div class="contact-info">
+                {% if section.settings.working_hours_title != blank %}
+                    <h4>{{ section.settings.working_hours_title }}</h4>
+                {% endif %}
+                {{ section.settings.working_hours_content }}
+                </div>
+            {% endif %}
 
-        {% if section.settings.show_social %}
-          <div class="contact-info">
-            {% render 'social-icons' %}
-          </div>
-        {% endif %}
+            {% if section.settings.phone != blank %}
+                <div class="contact-info">
+                {% if section.settings.phone_title != blank %}
+                    <h4>{{ section.settings.phone_title }}</h4>
+                {% endif %}
+                <a href="tel:{{ section.settings.phone }}">
+                    {{ section.settings.phone }}
+                </a>
+                </div>
+            {% endif %}
+
+            {% if section.settings.show_social %}
+                <div class="contact-info">
+                {% render 'social-icons' %}
+                </div>
+            {% endif %}
         </div>
         <div class="conatct_right_side_content">
             <div class="">
