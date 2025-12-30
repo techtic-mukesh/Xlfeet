@@ -106,4 +106,11 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
         flex-direction: column;
         gap: 30px;
     }
+    .contact-info h4, .contact-info p strong{
+        font-size: 18px;
+    }
+    .contact-info p{
+        font-size: 14px;
+        line-height: 20px;
+    }
 }
