@@ -19,6 +19,14 @@
     padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
   }
 }
+button.button.button--tertiary.button--small.tag_tabular {
+  background-color:{{  section.settings.tab_background_clr }};
+  color:{{  section.settings.tab_txt_color }};
+}
+button.button.button--tertiary.button--small.tag_tabular.is-active {
+    background-color:{{  section.settings.active_tab_background_clr }};
+    color:{{  section.settings.active_tab_txt_color }};
+}
 {% endstyle %}
 
 
@@ -248,6 +256,30 @@
       "default": "background-1"
     },
     { "type": "text", "id": "heading", "label": "Heading" },
+    {
+      "type": "header",
+      "content": "Block Color"
+    },
+    {
+      "type": "color",
+      "id": "tab_background_clr",
+      "label": "Tab Background Color"
+    },
+    {
+      "type": "color",
+      "id":"tab_txt_color",
+      "label": "Tab Text Color"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_background_clr",
+      "label": "Active Tab Background Color"
+    },
+    {
+      "type": "color",
+      "id":"active_tab_txt_color",
+      "label": "Active Tab Text Color"
+    },
     {
       "type": "range",
       "id": "padding_top",
