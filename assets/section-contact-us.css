@@ -21,3 +21,8 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
     margin-bottom: 30px;
     line-height: 67px;
 }
+  .contact-info h4 {
+    margin: 0;
+    font-size: 20px;
+    text-transform: capitalize;
+}
