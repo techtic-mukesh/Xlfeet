@@ -202,7 +202,8 @@ button.button.button--tertiary.button--small.tag_tabular.is-active {
         position:relative;
     }
     #video-metaobject-{{ section.id }} .card--media:hover .media { transform: scale(1.04); }
-    #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block;  
+    #video-metaobject-{{ section.id }} .video-card__link { position:absolute; inset:0; display:block; 
+          transition: transform .4s ease; 
       background-color: {{ section.settings.bg_color | color_modify: 'alpha', bg_opacity }}; }
     #video-metaobject-{{ section.id }} .video-card__play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
     #video-metaobject-{{ section.id }} .video-filter-buttons .button{
