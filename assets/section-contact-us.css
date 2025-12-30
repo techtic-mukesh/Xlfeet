@@ -52,3 +52,7 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
 .contact-info .list-social{
     justify-content: flex-start;
 }
+.contact-info .list-social {
+    justify-content: flex-start;
+    gap: 15px;
+}
