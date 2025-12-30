@@ -102,4 +102,8 @@ h2.title.title-wrapper--no-top-margin.inline-richtext.h1 {
         max-width:100%;
         width:100%;
     }
+    .custom_contact_us_grid {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
